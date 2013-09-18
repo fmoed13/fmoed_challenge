@@ -1,19 +1,12 @@
 package org.foi.fmoed;
 
 import java.util.List;
-
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
 import android.view.Menu;
-
 import org.foi.fmoed.managers.*;
 import org.foi.fmoed.models.Group;
-
-import com.google.gson.JsonObject;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
+import org.foi.fmoed.models.Idea;
 
 public class MainActivity extends Activity {
 
@@ -30,7 +23,6 @@ public class MainActivity extends Activity {
     	sessionManager = new SessionManager(MainActivity.this);
     	settingsManager = new SettingsManager(MainActivity.this);
 
-    	
     	sessionManager.startSession("testGroup");
     	sessionManager.checkSession("testGroup");
     	sessionManager.submitIdea("testGroup", "ivpusic");
@@ -40,7 +32,18 @@ public class MainActivity extends Activity {
     	settingsManager.getUserName();
     	databaseManager = new DatabaseManager(MainActivity.this);
     	Group group = new Group("test group");
+    	
     	databaseManager.addRecord(group.getValues(), DatabaseManager.TABLE_GROUP);
+    	databaseManager.updateRecord(new Group("updated value").getValues(), DatabaseManager.TABLE_GROUP, 2);
+    	databaseManager.deleteRecord(DatabaseManager.TABLE_GROUP, 2);
+    	
+    	List<Group> groupList = databaseManager.getGroupRecords();
+    	Idea idea = new Idea("ivan", "/home/ivan", 1);
+    	long status = databaseManager.addRecord(idea.getValues(), DatabaseManager.TABLE_IDEA);
+    	List <Idea> ideaList = databaseManager.getIdeaRecords(); 
+    			
+    	int a;
+    	a = 4;
     }
 
 

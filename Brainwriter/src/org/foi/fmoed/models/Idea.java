@@ -1,26 +1,32 @@
 package org.foi.fmoed.models;
 
+import org.foi.fmoed.managers.DatabaseManager;
+
+import android.content.ContentValues;
+
 public class Idea {
 
-	private String id;
+	private int id;
 	private String authorName;
 	private String path;
-	private String groupID;
+	private int groupID;
 
+	public Idea() {
+		
+	}
 
-	public Idea(String id, String authorName, String path, String groupID) {
+	public Idea(String authorName, String path, int groupID) {
 		super();
-		this.id = id;
 		this.authorName = authorName;
 		this.path = path;
 		this.groupID = groupID;
 	}
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -40,12 +46,20 @@ public class Idea {
 		this.path = path;
 	}
 	
-	public String getGroupID() {
+	public int getGroupID() {
 		return groupID;
 	}
 	
-	public void setGroupID(String groupID) {
+	public void setGroupID(int groupID) {
 		this.groupID = groupID;
+	}
+	
+	public ContentValues getValues() {
+		ContentValues values = new ContentValues();
+	    values.put(DatabaseManager.KEY_AUTHOR_NAME, this.getAuthorName());
+	    values.put(DatabaseManager.KEY_PATH, this.getPath()); 
+	    values.put(DatabaseManager.FK_IDEA_KEY, this.getGroupID()); 
+	    return values;
 	}
 	
 }
