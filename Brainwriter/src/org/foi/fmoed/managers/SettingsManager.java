@@ -21,5 +21,4 @@ public class SettingsManager {
 	public String getUserName() {
 		return this.settings.getString("username", "error");
 	}
-	
 }

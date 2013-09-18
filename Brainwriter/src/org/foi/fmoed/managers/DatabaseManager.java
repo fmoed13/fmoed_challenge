@@ -42,9 +42,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		
-		//db.execSQL("DROP TABLE IF EXISTS group");
-		//db.execSQL("DROP TABLE IF EXISTS idea");
-		
         String CREATE_GROUP_TABLE = "CREATE TABLE " 
         		+ TABLE_GROUP + "("
                 + KEY_ID + " INTEGER PRIMARY KEY, " 
