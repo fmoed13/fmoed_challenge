@@ -5,6 +5,11 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="libs/retrofit-1.2.2.jar"/>
+	<classpathentry kind="lib" path="libs/retrofit-1.2.2.jar" sourcepath="/home/ipusic/retrofit"/>
+	<classpathentry kind="lib" path="libs/ion-1.1.8.jar"/>
+	<classpathentry kind="lib" path="libs/androidasync-1.1.8.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.4-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.4-sources.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

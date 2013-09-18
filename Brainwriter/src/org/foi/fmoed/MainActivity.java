@@ -1,13 +1,29 @@
 package org.foi.fmoed;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 import android.view.Menu;
+
+import org.foi.managers.*;
+
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
 public class MainActivity extends Activity {
 
+	SessionManager sessionManager;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    	
+    	sessionManager = new SessionManager();
+    	sessionManager.startSession("testGroup", this);
+    	sessionManager.checkSession("testGroup", this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
