@@ -159,7 +159,7 @@ public class MainActivity extends FragmentActivity {
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-						Toast.makeText(getActivity(), "Starting group. Create some ideas.", Toast.LENGTH_LONG).show();
+						// Toast.makeText(getActivity(), "Starting group. Create some ideas.", Toast.LENGTH_LONG).show();
 						Intent ideasActivity= new Intent(getActivity(), IdeasActivity.class);
 	    				startActivity(ideasActivity);
 					}

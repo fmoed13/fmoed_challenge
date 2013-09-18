@@ -37,22 +37,21 @@ public final class R {
         public static final int text_icon=0x7f02000d;
     }
     public static final class id {
-        public static final int action_settings=0x7f080014;
+        public static final int action_settings=0x7f080013;
         public static final int create_group_button=0x7f080003;
         public static final int editText1=0x7f080002;
         public static final int groupName=0x7f080005;
         public static final int group_list=0x7f08000a;
         public static final int group_list_layout=0x7f080009;
-        public static final int group_name=0x7f080010;
         public static final int idea_item_layout_1=0x7f08000b;
-        public static final int idea_list=0x7f080012;
-        public static final int ideas_list_layout=0x7f080011;
+        public static final int idea_list=0x7f080011;
+        public static final int ideas_list_layout=0x7f080010;
         public static final int imageButton1=0x7f08000d;
         public static final int imageButton2=0x7f08000e;
         public static final int imageButton3=0x7f08000f;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
-        public static final int publish_layout=0x7f080013;
+        public static final int publish_layout=0x7f080012;
         public static final int round=0x7f080007;
         public static final int section_label=0x7f080004;
         public static final int status=0x7f080008;
