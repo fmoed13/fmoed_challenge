@@ -24,6 +24,8 @@ public class MainActivity extends Activity {
     	sessionManager = new SessionManager();
     	sessionManager.startSession("testGroup", this);
     	sessionManager.checkSession("testGroup", this);
+    	sessionManager.submitIdea("testGroup", "ivpusic", this);
+    	sessionManager.receiveIdea("testGroup", "ivpusic", this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
