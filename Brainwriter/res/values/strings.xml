@@ -7,5 +7,6 @@
     <string name="title_section1">Groups</string>
     <string name="title_section2">New group</string>
     <string name="title_section3">Stuff</string>
+    <string name="group_name">Enter group name..</string>
 
 </resources>

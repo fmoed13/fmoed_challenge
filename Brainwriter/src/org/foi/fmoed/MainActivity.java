@@ -6,6 +6,7 @@ import org.foi.fmoed.adapters.GroupAdapter;
 import org.foi.fmoed.adapters.IdeaAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -18,10 +19,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -132,10 +136,22 @@ public class MainActivity extends FragmentActivity {
 				GroupAdapter groupAdapter = new GroupAdapter(getActivity());
 				groupList.setAdapter(groupAdapter);
 			} else if (sectionNumber == 2){
-				rootView = inflater.inflate(R.layout.ideas_list, container, false);
+				rootView = inflater.inflate(R.layout.create_group_layout, container, false);
+				ImageButton createGroupButton = (ImageButton) rootView.findViewById(R.id.create_group_button);
+				createGroupButton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						Toast.makeText(getActivity(), "Starting group. Create some ideas.", Toast.LENGTH_LONG).show();
+						Intent ideasActivity= new Intent(getActivity(), IdeasActivity.class);
+	    				startActivity(ideasActivity);
+					}
+				});
+				/*
 				ListView groupList = (ListView) rootView.findViewById(R.id.idea_list);
 				IdeaAdapter ideaAdapter = new IdeaAdapter(getActivity());
-				groupList.setAdapter(ideaAdapter);  
+				groupList.setAdapter(ideaAdapter);  */
 			} else {
 				rootView = inflater.inflate(R.layout.fragment_main, container, false);  
 	            TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);  
