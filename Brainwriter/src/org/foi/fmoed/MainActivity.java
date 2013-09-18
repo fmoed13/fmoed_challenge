@@ -2,15 +2,14 @@ package org.foi.fmoed;
 
 
 import java.util.List;
-
 import java.util.Locale;
 
+import org.foi.fmoed.R;
 import org.foi.fmoed.adapters.GroupAdapter;
 import org.foi.fmoed.adapters.IdeaAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -138,37 +137,6 @@ public class MainActivity extends FragmentActivity {
 	SettingsManager settingsManager;
 	DatabaseManager databaseManager;
 	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-    	
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-    	sessionManager = new SessionManager(MainActivity.this);
-    	settingsManager = new SettingsManager(MainActivity.this);
-
-    	sessionManager.startSession("testGroup");
-    	sessionManager.checkSession("testGroup");
-    	sessionManager.submitIdea("testGroup", "ivpusic");
-    	sessionManager.receiveIdea("testGroup", "ivpusic");
-    	
-    	settingsManager.setUserName("some_user");
-    	settingsManager.getUserName();
-    	databaseManager = new DatabaseManager(MainActivity.this);
-    	Group group = new Group("test group");
-    	
-    	databaseManager.addRecord(group.getValues(), DatabaseManager.TABLE_GROUP);
-    	databaseManager.updateRecord(new Group("updated value").getValues(), DatabaseManager.TABLE_GROUP, 2);
-    	databaseManager.deleteRecord(DatabaseManager.TABLE_GROUP, 2);
-    	
-    	List<Group> groupList = databaseManager.getGroupRecords();
-    	Idea idea = new Idea("ivan", "/home/ivan", 1);
-    	long status = databaseManager.addRecord(idea.getValues(), DatabaseManager.TABLE_IDEA);
-    	List <Idea> ideaList = databaseManager.getIdeaRecords(); 
-    			
-    	int a;
-    	a = 4;
-    }
 
 		public SectionFragment() {
 		}
