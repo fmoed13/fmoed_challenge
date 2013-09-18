@@ -3,6 +3,7 @@ package org.foi.fmoed;
 import java.util.Locale;
 
 import org.foi.fmoed.adapters.GroupAdapter;
+import org.foi.fmoed.adapters.IdeaAdapter;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,7 +40,7 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -129,6 +131,11 @@ public class MainActivity extends FragmentActivity {
 				ListView groupList = (ListView) rootView.findViewById(R.id.group_list);
 				GroupAdapter groupAdapter = new GroupAdapter(getActivity());
 				groupList.setAdapter(groupAdapter);
+			} else if (sectionNumber == 2){
+				rootView = inflater.inflate(R.layout.ideas_list, container, false);
+				ListView groupList = (ListView) rootView.findViewById(R.id.idea_list);
+				IdeaAdapter ideaAdapter = new IdeaAdapter(getActivity());
+				groupList.setAdapter(ideaAdapter);  
 			} else {
 				rootView = inflater.inflate(R.layout.fragment_main, container, false);  
 	            TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);  

@@ -8,18 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-public class GroupAdapter extends BaseAdapter{
+public class IdeaAdapter extends BaseAdapter{
 	
 	private Context con;
 	
-	public GroupAdapter(Context c) {
+	public IdeaAdapter(Context c) {
 		this.con = c;
 	}
 	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 12;
+		return 3;
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class GroupAdapter extends BaseAdapter{
 		LayoutInflater li;
 		if (convertView == null){
 				li = LayoutInflater.from(con);
-				v = li.inflate(R.layout.group_item, null);
+				v = li.inflate(R.layout.idea_item, null);
 		}
 		return v;
 	}
