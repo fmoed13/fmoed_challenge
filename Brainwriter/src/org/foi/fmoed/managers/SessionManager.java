@@ -1,4 +1,4 @@
-package org.foi.managers;
+package org.foi.fmoed.managers;
 
 import java.io.File;
 import java.util.List;
@@ -18,7 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import retrofit.Server;
 
-public class SessionManager extends Activity {
+public class SessionManager {
 
 	public static String SERVER = "http://evodeployment.evolaris.net/brainwriting/";
 	public static String START_SESSION = SERVER + "start?group=%s";
@@ -27,6 +27,12 @@ public class SessionManager extends Activity {
 	public static String RECEIVE_IDEA = SERVER + "previous?group=%s&user=%s";
 	public static String RESULTS = SERVER + "results?group=%s";
 
+	private Context context;
+	
+	public SessionManager(Context Context) {
+		this.context = Context;
+	}
+	
 	/**
 	 * Method for formating URLs
 	 * 
@@ -40,9 +46,9 @@ public class SessionManager extends Activity {
 		return String.format(url, (Object[]) strings);
 	}
 
-	public void startSession(String groupName, Context context) {
+	public void startSession(String groupName) {
 
-		Ion.with(context, this.formatURL(START_SESSION, groupName))
+		Ion.with(this.context, this.formatURL(START_SESSION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
@@ -53,8 +59,8 @@ public class SessionManager extends Activity {
 				});
 	}
 
-	public void checkSession(String groupName, Context context) {
-		Ion.with(context, this.formatURL(CHECK_SESION, groupName))
+	public void checkSession(String groupName) {
+		Ion.with(this.context, this.formatURL(CHECK_SESION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
@@ -73,8 +79,8 @@ public class SessionManager extends Activity {
 				});
 	}
 
-	public void submitIdea(String groupName, String userName, Context context) {
-		Ion.with(context, this.formatURL(SUBMIT_IDEA, groupName, userName))
+	public void submitIdea(String groupName, String userName) {
+		Ion.with(this.context, this.formatURL(SUBMIT_IDEA, groupName, userName))
 				.setMultipartParameter("text1", "first text").asJsonObject()
 				.setCallback(new FutureCallback<JsonObject>() {
 					@Override
@@ -84,8 +90,8 @@ public class SessionManager extends Activity {
 				});
 	}
 
-	public void receiveIdea(String groupName, String userName, Context context) {
-		Ion.with(context, this.formatURL(RECEIVE_IDEA, groupName, userName))
+	public void receiveIdea(String groupName, String userName) {
+		Ion.with(this.context, this.formatURL(RECEIVE_IDEA, groupName, userName))
 		.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 			@Override
 			public void onCompleted(Exception e, JsonObject result) {
@@ -94,7 +100,7 @@ public class SessionManager extends Activity {
 		});
 	}
 
-	public void sessionResults(String groupName, Context context) {
+	public void sessionResults(String groupName) {
 		// TODO:
 	}
 
