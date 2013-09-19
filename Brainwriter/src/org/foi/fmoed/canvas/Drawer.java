@@ -44,12 +44,14 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+//TODO code audit
+
 public class Drawer extends Activity implements OnColorChangedListener {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.drawer);
 		
 		int currentOrientation = getResources().getConfiguration().orientation;
@@ -259,6 +261,7 @@ public class Drawer extends Activity implements OnColorChangedListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 
 		menu.add(0, 0, 0, "Color").setShortcut('3', 'c');
 		menu.add(0, 1, 0, "BG Color").setShortcut('3', 'c');
@@ -286,6 +289,7 @@ public class Drawer extends Activity implements OnColorChangedListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		String status;
+		mm = new MultimediaManager();
 		
 		switch (item.getItemId()) {
 
@@ -339,6 +343,7 @@ public class Drawer extends Activity implements OnColorChangedListener {
 		case 7:
 			status = (mm.saveImage(mView, false)) ? "Image Saved" : "Error Saving Image";
 			Toast.makeText(activity, status, Toast.LENGTH_SHORT).show();
+			finish();
 			return true;
 
 		case 8:

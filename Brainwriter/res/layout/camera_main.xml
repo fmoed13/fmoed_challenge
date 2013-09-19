@@ -10,7 +10,8 @@
             android:id="@+id/imageView"
             android:src="@drawable/photo_placeholder"
             android:layout_alignParentTop="true"
-            android:padding="50dp"/>
+            android:padding="50dp"
+            android:layout_centerInParent="true"/>
 
     <ImageButton
             android:layout_width="50dp"

@@ -2,6 +2,7 @@ package org.foi.fmoed.camera;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.UUID;
 
 import org.foi.fmoed.R;
@@ -9,11 +10,15 @@ import org.foi.fmoed.managers.MultimediaManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,7 +37,7 @@ public class CameraActivity extends Activity {
     private MultimediaManager mm;
 
 
-    public String PICTURES_DIR = "Pictures/";
+    public String PICTURES_DIR = "Brainwriter/Camera/";
 
     public String path = Environment.getExternalStorageDirectory() + "/";
     UUID image_id;
@@ -47,6 +52,14 @@ public class CameraActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_main);
+        
+        int currentOrientation = getResources().getConfiguration().orientation;
+        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+ 		   setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+ 		}
+ 		else {
+ 		   setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+ 		}
 
         savePhotoButton = (ImageButton) findViewById(R.id.savePhotoButton);
         cancelRequestButton = (ImageButton) findViewById(R.id.cancelRequestButton);
@@ -66,8 +79,21 @@ public class CameraActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-            	String status = (mm.saveImage(Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888))) ? "Wallpaper has been setted up" : "Error Saving Image";
-    			Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
+            	//String status = (mm.saveImage(Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888))) ? "Wallpaper has been setted up" : "Error Saving Image";
+    			//Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
+            	if (imageBytes != null) {
+                    new SavePhotoTask().execute(imageBytes);
+                    Toast.makeText(getApplicationContext(),
+                                    "Saving photo to Images folder.",
+                                    Toast.LENGTH_LONG);
+                    finish();
+                    //TODO return value for saved pict
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),
+                                    "There's nothing to save",
+                                    Toast.LENGTH_LONG);
+                }
             }
         });
 
@@ -75,7 +101,8 @@ public class CameraActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                // TODO: go to previous activity
+            	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                finish();
             }
         });
 
@@ -83,7 +110,9 @@ public class CameraActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                // TODO: restart this activity
+            	Intent intent = getIntent();
+            	finish();
+            	startActivity(intent);
             }
         });
     }
@@ -101,7 +130,7 @@ public class CameraActivity extends Activity {
             Bitmap photo = BitmapFactory.decodeFile(path + image_id);
             imageView.setImageBitmap(photo);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
             imageBytes = stream.toByteArray();
         }
 
@@ -109,6 +138,42 @@ public class CameraActivity extends Activity {
             // TODO: go to previous activity
         }
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         super.onActivityResult(requestCode, resultCode, data);
     }
+    
+    /**
+     * Async class for communication with I/O for saving taken  photo
+     * @param png byte representation of given photo for saving to filesystem
+     */
+    class SavePhotoTask extends AsyncTask<byte[], String, String> {
+
+        @Override
+        protected String doInBackground(byte[]... png) {
+
+            UUID image_name = UUID.randomUUID();
+            File photo = new File(path, PICTURES_DIR + "BW" + image_name.toString() + ".png");
+
+            File as = new File(path, PICTURES_DIR);
+            as.mkdirs();
+            
+            if (photo.exists()) {
+                photo.delete();
+            }
+
+            try {
+                FileOutputStream fos = new FileOutputStream(photo.getPath());
+
+                fos.write(png[0]);
+                fos.close();
+            }
+            catch (java.io.IOException e) {
+                Log.e("PictureDemo", "Exception in photoCallback", e);
+            }
+            
+            //TODO Toast
+            return(null);
+        }
+    }
+    
 }

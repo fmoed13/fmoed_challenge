@@ -22,29 +22,7 @@ import android.view.View;
 public class MultimediaManager extends Activity {
 	
 	/**
-	 * 
-	 * @param finalBitmap
-	 */
-	
-	public boolean saveImage(Bitmap finalBitmap) {
-
-		File file = makeFile();
-		
-	    try {
-	           FileOutputStream out = new FileOutputStream(file);
-	           finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-	           out.flush();
-	           out.close();
-	           return true;
-
-	    } catch (Exception e) {
-	           e.printStackTrace();
-	           return false;
-	    }
-	}
-	
-	/**
-	 * 
+	 * Helper method for saving image from canvas to .png on filesystem
 	 * @param v
 	 * @param setWallpaper
 	 * @return
@@ -69,7 +47,7 @@ public class MultimediaManager extends Activity {
 				return true;
 			} else {
 				FileOutputStream out = new FileOutputStream(file);
-				b.compress(Bitmap.CompressFormat.JPEG, 100, out);
+				b.compress(Bitmap.CompressFormat.PNG, 100, out);
 				out.flush();
 				out.close();
 				return true;
@@ -80,9 +58,14 @@ public class MultimediaManager extends Activity {
 		}
 	}
 	
+	/**
+	 * Helper function for creating directory path
+	 * @return File object
+	 */
+	
 	private File makeFile() {
 		String path = Environment.getExternalStorageDirectory().toString();
-	    File dir = new File(path + "/Images");    
+	    File dir = new File(path + "/Brainwriter/Drawings");    
 	    dir.mkdirs();
 	    String fname = "BW" + UUID.randomUUID() + ".png";
 	    File file = new File (dir, fname);
