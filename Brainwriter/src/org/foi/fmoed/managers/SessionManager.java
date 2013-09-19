@@ -79,9 +79,12 @@ public class SessionManager {
 				});
 	}
 
-	public void submitIdea(String groupName, String userName) {
+	public void submitIdea(String groupName, String userName, List<String> ideasTexts) {
 		Ion.with(this.context, this.formatURL(SUBMIT_IDEA, groupName, userName))
-				.setMultipartParameter("text1", "first text").asJsonObject()
+				.setMultipartParameter("text1", ideasTexts.get(0))
+				.setMultipartParameter("text2", ideasTexts.get(1))
+				.setMultipartParameter("text3", ideasTexts.get(2))
+				.asJsonObject()
 				.setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {

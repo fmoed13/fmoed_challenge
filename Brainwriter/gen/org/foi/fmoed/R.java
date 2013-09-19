@@ -58,11 +58,12 @@ public final class R {
     public static final class id {
         public static final int action_settings=0x7f080019;
         public static final int btn_save_txt=0x7f080018;
+        public static final int btn_submit_ideas=0x7f080015;
         public static final int camera_button=0x7f080010;
         public static final int canvas_button=0x7f08000f;
         public static final int create_group_button=0x7f080003;
         public static final int editText1=0x7f080002;
-        public static final int edit_name=0x7f080015;
+        public static final int edit_name=0x7f080016;
         public static final int groupName=0x7f080005;
         public static final int group_list=0x7f08000e;
         public static final int group_list_layout=0x7f08000d;
@@ -72,7 +73,6 @@ public final class R {
         public static final int group_total=0x7f08000b;
         public static final int idea_list=0x7f080014;
         public static final int ideas_list_layout=0x7f080013;
-        public static final int lbl_description=0x7f080016;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
         public static final int round=0x7f080007;

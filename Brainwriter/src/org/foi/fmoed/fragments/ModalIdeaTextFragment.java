@@ -5,6 +5,7 @@ import org.foi.fmoed.activities.IdeasActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.sax.RootElement;
 import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ public class ModalIdeaTextFragment extends DialogFragment implements OnEditorAct
 	        View view = inflater.inflate(R.layout.modal_idea_text, container);
 	        mEditText = (EditText) view.findViewById(R.id.txt_idea_desc);
 	        btnSaveDesc = (Button) view.findViewById(R.id.btn_save_txt);
-	        btnSaveDesc.setOnClickListener(saveTextBtnListener);
+	        btnSaveDesc.setOnClickListener(onSaveTextBtnListener);
 			
 	        getDialog().setTitle("Description");
 
@@ -49,10 +50,13 @@ public class ModalIdeaTextFragment extends DialogFragment implements OnEditorAct
 	        return view;
 	    }
 	    
-		private OnClickListener saveTextBtnListener = new OnClickListener() {
+		private OnClickListener onSaveTextBtnListener = new OnClickListener() {
 
 		    @Override
 		    public void onClick(final View v) {
+	            EditNameDialogListener activity = (EditNameDialogListener) getActivity();
+	            activity.onFinishEditDialog(mEditText.getText().toString());
+	            getDialog().dismiss();
 		    }
 		};
 
