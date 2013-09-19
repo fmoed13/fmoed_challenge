@@ -45,23 +45,26 @@ public final class R {
         public static final int idea_2=0x7f020015;
         public static final int idea_3=0x7f020016;
         public static final int red_x=0x7f020017;
-        public static final int search=0x7f020018;
-        public static final int start=0x7f020019;
-        public static final int start1=0x7f02001a;
-        public static final int text=0x7f02001b;
-        public static final int text_checked=0x7f02001c;
-        public static final int text_crossed=0x7f02001d;
-        public static final int text_gradient=0x7f02001e;
-        public static final int text_selector=0x7f02001f;
-        public static final int write=0x7f020020;
+        public static final int save=0x7f020018;
+        public static final int save_gradient=0x7f020019;
+        public static final int save_selector=0x7f02001a;
+        public static final int search=0x7f02001b;
+        public static final int start=0x7f02001c;
+        public static final int start1=0x7f02001d;
+        public static final int text=0x7f02001e;
+        public static final int text_checked=0x7f02001f;
+        public static final int text_crossed=0x7f020020;
+        public static final int text_gradient=0x7f020021;
+        public static final int text_selector=0x7f020022;
+        public static final int write=0x7f020023;
     }
     public static final class id {
-        public static final int action_settings=0x7f080019;
+        public static final int action_settings=0x7f08001b;
         public static final int btn_save_txt=0x7f080018;
         public static final int camera_button=0x7f080010;
         public static final int canvas_button=0x7f08000f;
-        public static final int create_group_button=0x7f080003;
-        public static final int editText1=0x7f080002;
+        public static final int create_group_button=0x7f080002;
+        public static final int editText1=0x7f080003;
         public static final int edit_name=0x7f080015;
         public static final int groupName=0x7f080005;
         public static final int group_list=0x7f08000e;
@@ -76,12 +79,14 @@ public final class R {
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
         public static final int round=0x7f080007;
+        public static final int save_button=0x7f08001a;
         public static final int section_label=0x7f080004;
         public static final int status=0x7f080008;
         public static final int textView1=0x7f080012;
         public static final int text_button=0x7f080011;
         public static final int total=0x7f080006;
         public static final int txt_idea_desc=0x7f080017;
+        public static final int username=0x7f080019;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -93,6 +98,7 @@ public final class R {
         public static final int idea_item=0x7f030006;
         public static final int ideas_list=0x7f030007;
         public static final int modal_idea_text=0x7f030008;
+        public static final int settings=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f070000;

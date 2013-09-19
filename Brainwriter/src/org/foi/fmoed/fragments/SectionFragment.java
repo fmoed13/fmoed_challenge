@@ -7,7 +7,9 @@ import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.managers.SessionManager;
 import org.foi.fmoed.managers.SettingsManager;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,8 +19,10 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A dummy fragment representing a section of the app, but that simply
@@ -52,6 +56,7 @@ public class SectionFragment extends Fragment {
 		}
 
 		sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+		settingsManager = new SettingsManager(getActivity());
 
 		if (sectionNumber == 1) {
 			rootView = inflater.inflate(R.layout.groups_list, container,
@@ -60,31 +65,53 @@ public class SectionFragment extends Fragment {
 					.findViewById(R.id.group_list);
 			GroupAdapter groupAdapter = new GroupAdapter(getActivity());
 			groupList.setAdapter(groupAdapter);
+			
 		} else if (sectionNumber == 2) {
 			rootView = inflater.inflate(R.layout.create_group_layout,
 					container, false);
 			
-			ImageButton createGroupButton = (ImageButton) rootView
-					.findViewById(R.id.create_group_button);
+			ImageButton createGroupButton = (ImageButton) rootView.findViewById(R.id.create_group_button);
 			
 			createGroupButton.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					EditText groupNameInput = (EditText) rootView.findViewById(R.id.editText1);
-					sessionManager.startSession(groupNameInput.getText().toString());
-					Intent ideasActivity = new Intent(getActivity(), IdeasActivity.class);
-					startActivity(ideasActivity);
+					if (settingsManager.getUserName() != "error" 
+							&& !settingsManager.getUserName().equals("")){
+						EditText groupNameInput = (EditText) rootView.findViewById(R.id.editText1);
+						sessionManager.startSession(groupNameInput.getText().toString());
+						Intent ideasActivity = new Intent(getActivity(), IdeasActivity.class);
+						startActivity(ideasActivity);
+					} else {
+						Toast.makeText(getActivity(), 
+							"Please enter your username (Swipe left)", 
+								Toast.LENGTH_SHORT).show();
+					}
+					
 				}
 			});
 
 		} else {
-			rootView = inflater.inflate(R.layout.fragment_main, container,
+			rootView = inflater.inflate(R.layout.settings, container,
 					false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			
+			final EditText username = (EditText) rootView.findViewById(R.id.username);
+			if (!settingsManager.getUserName().equals("error"))
+				username.setText(settingsManager.getUserName());
+			
+			ImageButton saveButton = (ImageButton) rootView.findViewById(R.id.save_button);
+			saveButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					if (!username.getText().toString().equals("")) {
+						settingsManager.setUserName(username.getText().toString());
+						Toast.makeText(getActivity(), "Username saved.", Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(getActivity(), "Please enter a valid username", Toast.LENGTH_SHORT).show();
+					}
+				}
+			});
 		}
 
 		return rootView;

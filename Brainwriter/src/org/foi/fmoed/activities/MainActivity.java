@@ -8,7 +8,9 @@ import org.foi.fmoed.adapters.GroupAdapter;
 import org.foi.fmoed.adapters.IdeaAdapter;
 import org.foi.fmoed.fragments.SectionFragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,6 +35,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +51,8 @@ public class MainActivity extends FragmentActivity {
 	 * The viewPager that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	
+	SettingsManager settingsManager;
 
 	public MainActivity() {
 		sessionManager = null;
@@ -66,7 +71,8 @@ public class MainActivity extends FragmentActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-
+		
+		
 	}
 
 	@Override
@@ -90,8 +96,6 @@ public class MainActivity extends FragmentActivity {
 		public Fragment getItem(int position) {
 
 			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
 			Fragment fragment = new SectionFragment();
 			Bundle args = new Bundle();
 			args.putInt(SectionFragment.ARG_SECTION_NUMBER, position + 1);
