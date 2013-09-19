@@ -6,6 +6,7 @@ import java.util.List;
 import org.foi.fmoed.R;
 import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.activities.MainActivity;
+import org.foi.fmoed.models.Group;
 
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -16,6 +17,7 @@ import com.google.gson.JsonObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.SumPathEffect;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,11 +36,11 @@ public class SessionManager {
 	public static String RESULTS = SERVER + "results?group=%s";
 
 	private Context context;
-	private ProgressBar progressBar;
-	private IdeasActivity activity;
+	private DatabaseManager dbManager;
 
 	public SessionManager(Context ctx) {
-		this.context = ctx;
+		context = ctx;
+		dbManager = new DatabaseManager(context);
 	}
 
 	/**
@@ -54,15 +56,24 @@ public class SessionManager {
 		return String.format(url, (Object[]) strings);
 	}
 
-	public void startSession(String groupName) {
+	public void startSession(final String groupName) {
 
 		Ion.with(this.context, this.formatURL(START_SESSION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
-					public void onCompleted(Exception e, JsonObject result) {
-						String res = result.get("message").toString();
-						Log.i("sessionStart", "started");
-						// TODO: check if session is started without errors...
+					public void onCompleted(Exception ex, JsonObject result) {
+						Log.i("sessionStart", result.get("message").toString());
+						if (dbManager.checkIfGroupExists(groupName) == 0) {
+							dbManager.addRecord(new Group(groupName,
+									Group.STATUS_IN_PROGRESS, "1").getValues(),
+									DatabaseManager.TABLE_GROUP);
+						}
+
+						IdeasActivity.groupName = groupName;
+						Intent ideasActivity = new Intent(context,
+								IdeasActivity.class);
+						Activity activity = (Activity)context;
+						activity.startActivity(ideasActivity);
 					}
 				});
 	}
@@ -97,14 +108,17 @@ public class SessionManager {
 						progressDialog.setProgress(uploaded);
 						progressDialog.setMax(total);
 					}
-				})
-				.setMultipartParameter("text1", ideasTexts.get(0))
+				}).setMultipartParameter("text1", ideasTexts.get(0))
 				.setMultipartParameter("text2", ideasTexts.get(1))
 				.setMultipartParameter("text3", ideasTexts.get(2))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
 						progressDialog.dismiss();
+						Intent mainActivity = new Intent(context,
+								MainActivity.class);
+						Activity activity = (Activity) context;
+						activity.startActivity(mainActivity);
 						Log.i("submitIdea", "completed...");
 					}
 				});

@@ -88,6 +88,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	    return status;
 	}
 	
+	public long checkIfGroupExists(String groupName) {
+        String countQuery = "SELECT * FROM tbl_group WHERE name='" + groupName + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+ 
+        return cursor.getCount();
+	}
+	
 	/**
 	 * Method for updating existing row in database
 	 * @param values New values
