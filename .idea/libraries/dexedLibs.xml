@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/gson-2.2.4-javadoc-3ae79d587bea7609320c49de590baf8e.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/retrofit-1.2.2-1d017fc52a142200aa4d624a98e4bc24.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/ion-1.1.8-598f110a05a0b3b479eb4146310ae139.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/gson-2.2.4-1ff37e14a5c3e2f8bebb9569a1aad04a.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/gson-2.2.4-sources-fda8669b9875b3cc890223792e27d34a.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/ion-1.1.8-f1584b760f268f6b2636eb85480dd9a1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/gson-2.2.4-sources-c95d990a6d1a63a395d7b915dacc5fad.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/gson-2.2.4-dc9a31be98e1339077594355d519a49f.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/androidasync-1.1.8-45231426bd0726a01c4ab6a131d9e66c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/androidasync-1.1.8-60059171b7dfa62f59729dc47a953d96.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/annotations-af7cf70320abc2ea30ee8bc45c0cb816.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/gson-2.2.4-javadoc-2523dad7bff602b458a24129b19bc0fe.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/android-support-v4-6a35dda1bcdaf3e4890f55c5f5e932da.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/retrofit-1.2.2-2d020d0c7d6594ad3c402cedd6d88495.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/android-support-v4-598fdd8b44df8c57980d1af65d6a2302.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Brainwriter/bin/dexedLibs/annotations-c43b7df3f256d6912e4461c049659a3f.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
