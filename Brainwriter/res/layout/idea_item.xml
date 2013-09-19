@@ -27,8 +27,8 @@
 
     <Button
         android:id="@+id/text_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:layout_toLeftOf="@+id/camera_button"
