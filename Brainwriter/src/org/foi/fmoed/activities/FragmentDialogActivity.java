@@ -2,12 +2,9 @@ package org.foi.fmoed.activities;
 
 import org.foi.fmoed.fragments.ModalIdeaTextFragment;
 import org.foi.fmoed.fragments.ModalIdeaTextFragment.EditNameDialogListener;
-import org.foi.fmoed.models.Idea;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.widget.Toast;
 
 public class FragmentDialogActivity extends FragmentActivity implements EditNameDialogListener {
 

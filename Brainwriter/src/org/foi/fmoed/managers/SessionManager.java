@@ -1,9 +1,7 @@
 package org.foi.fmoed.managers;
 
-import java.io.File;
 import java.util.List;
 
-import org.foi.fmoed.R;
 import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.activities.MainActivity;
 import org.foi.fmoed.models.Group;
@@ -11,20 +9,13 @@ import org.foi.fmoed.models.Group;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.ProgressCallback;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.SumPathEffect;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ProgressBar;
-import retrofit.Server;
 
 public class SessionManager {
 

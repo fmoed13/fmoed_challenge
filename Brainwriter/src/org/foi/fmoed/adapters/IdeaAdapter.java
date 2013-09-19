@@ -1,13 +1,10 @@
 package org.foi.fmoed.adapters;
 
 import org.foi.fmoed.R;
-import org.foi.fmoed.activities.FragmentDialogActivity;
 import org.foi.fmoed.activities.IdeasActivity;
-import org.foi.fmoed.fragments.ModalIdeaTextFragment;
-import org.foi.fmoed.fragments.ModalIdeaTextFragment.EditNameDialogListener;
+import org.foi.fmoed.utilities.CountDown;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,11 +12,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.os.Bundle;
-import android.sax.StartElementListener;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 
 
 
@@ -58,14 +50,17 @@ public class IdeaAdapter extends BaseAdapter {
 		LayoutInflater li;
 		
 		if (convertView == null){
+			li = LayoutInflater.from(con);
 			if (position == 0){
-				li = LayoutInflater.from(con);
+
 				v = li.inflate(R.layout.group_status, null);
 				
 				boxGroupName = (TextView)v.findViewById(R.id.group_name);
 				boxGroupName.append(IdeasActivity.groupName);
+				
+				CountDown countDown = new CountDown(v.getContext());
+				countDown.start();
 			} else {
-				li = LayoutInflater.from(con);
 				v = li.inflate(R.layout.idea_item, null);
 				addTextBtn = new Button(parent.getContext());
 				addTextBtn = (Button)v.findViewById(R.id.text_button);

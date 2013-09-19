@@ -5,12 +5,8 @@ import java.util.List;
 import org.foi.fmoed.R;
 import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.models.Group;
-import org.w3c.dom.Text;
-
 import android.content.Context;
-import android.sax.RootElement;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

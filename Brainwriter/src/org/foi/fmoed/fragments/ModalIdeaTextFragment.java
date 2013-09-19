@@ -2,7 +2,6 @@ package org.foi.fmoed.fragments;
 
 import org.foi.fmoed.R;
 import android.os.Bundle;
-import android.sax.RootElement;
 import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
