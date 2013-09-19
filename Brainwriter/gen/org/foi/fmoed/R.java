@@ -43,11 +43,13 @@ public final class R {
         public static final int write=0x7f020013;
     }
     public static final class id {
-        public static final int action_settings=0x7f080017;
+        public static final int action_settings=0x7f08001b;
+        public static final int btn_save_txt=0x7f08001a;
         public static final int camera_button=0x7f080012;
         public static final int canvas_button=0x7f080014;
         public static final int create_group_button=0x7f080003;
         public static final int editText1=0x7f080002;
+        public static final int edit_name=0x7f080017;
         public static final int groupName=0x7f080005;
         public static final int group_list=0x7f080010;
         public static final int group_list_layout=0x7f08000f;
@@ -58,6 +60,7 @@ public final class R {
         public static final int idea_item_layout_1=0x7f080011;
         public static final int idea_list=0x7f080016;
         public static final int ideas_list_layout=0x7f080015;
+        public static final int lbl_description=0x7f080018;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
         public static final int round=0x7f080007;
@@ -67,6 +70,7 @@ public final class R {
         public static final int textView3=0x7f08000e;
         public static final int text_button=0x7f080013;
         public static final int total=0x7f080006;
+        public static final int txt_idea_desc=0x7f080019;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -77,6 +81,7 @@ public final class R {
         public static final int groups_list=0x7f030005;
         public static final int idea_item=0x7f030006;
         public static final int ideas_list=0x7f030007;
+        public static final int modal_idea_text=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f070000;
