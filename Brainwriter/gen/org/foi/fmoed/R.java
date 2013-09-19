@@ -64,15 +64,9 @@ public final class R {
         public static final int btn_submit_ideas=0x7f080015;
         public static final int camera_button=0x7f080010;
         public static final int canvas_button=0x7f08000f;
-<<<<<<< HEAD
         public static final int create_group_button=0x7f080002;
         public static final int editText1=0x7f080003;
-        public static final int edit_name=0x7f080015;
-=======
-        public static final int create_group_button=0x7f080003;
-        public static final int editText1=0x7f080002;
         public static final int edit_name=0x7f080016;
->>>>>>> adding_idea
         public static final int groupName=0x7f080005;
         public static final int group_list=0x7f08000e;
         public static final int group_list_layout=0x7f08000d;

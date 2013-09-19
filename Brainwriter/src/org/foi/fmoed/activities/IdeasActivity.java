@@ -7,6 +7,7 @@ import org.foi.fmoed.R;
 import org.foi.fmoed.adapters.IdeaAdapter;
 import org.foi.fmoed.fragments.ModalIdeaTextFragment.EditNameDialogListener;
 import org.foi.fmoed.managers.SessionManager;
+import org.foi.fmoed.managers.SettingsManager;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -23,9 +24,9 @@ public class IdeasActivity extends FragmentDialogActivity {
 	private Button btnSubmitIdeas;
 	
 	private SessionManager sessionManager;
+	private SettingsManager settingsManager;
 	
 	public static String groupName;
-	
 	public static String idea1Text;
 	public static String idea2Text;
 	public static String idea3Text;
@@ -60,15 +61,14 @@ public class IdeasActivity extends FragmentDialogActivity {
 		groupList.setAdapter(ideaAdapter);
 		
 		sessionManager = new SessionManager(this);
+		settingsManager = new SettingsManager(this);
 	}
 	
 	private OnClickListener onBtnSubmitIdeasClick = new OnClickListener() {
 
 	    @Override
 	    public void onClick(final View v) {
-
-	    	
-	    	sessionManager.submitIdea(groupName, "testUser", getIdeasTextsList());
+	    	sessionManager.submitIdea(groupName, settingsManager.getUserName(), getIdeasTextsList());
 	    }
 	};
 }

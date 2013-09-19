@@ -78,8 +78,11 @@ public class SectionFragment extends Fragment {
 				public void onClick(View v) {
 					if (settingsManager.getUserName() != "error" 
 							&& !settingsManager.getUserName().equals("")){
+						IdeasActivity.resetStaticVariables();
 						EditText groupNameInput = (EditText) rootView.findViewById(R.id.editText1);
-						sessionManager.startSession(groupNameInput.getText().toString());
+						String sessionName = groupNameInput.getText().toString();
+						sessionManager.startSession(sessionName);
+						IdeasActivity.groupName = sessionName;
 						Intent ideasActivity = new Intent(getActivity(), IdeasActivity.class);
 						startActivity(ideasActivity);
 					} else {
@@ -87,14 +90,6 @@ public class SectionFragment extends Fragment {
 							"Please enter your username (Swipe left)", 
 								Toast.LENGTH_SHORT).show();
 					}
-					
-					IdeasActivity.resetStaticVariables();
-					EditText groupNameInput = (EditText) rootView.findViewById(R.id.editText1);
-					String sessionName = groupNameInput.getText().toString();
-					sessionManager.startSession(sessionName);
-					IdeasActivity.groupName = sessionName;
-					Intent ideasActivity = new Intent(getActivity(), IdeasActivity.class);
-					startActivity(ideasActivity);
 				}
 			});
 
