@@ -15,7 +15,7 @@ import android.util.Log;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 	
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
  
     // Database Name
     private static final String DATABASE_NAME = "brainwriter";
@@ -27,6 +27,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     // field names
     public static final String KEY_ID = "_id";
     public static final String KEY_NAME = "name";
+    public static final String KEY_STATUS = "status";
+    public static final String KEY_ROUND = "round";
     public static final String KEY_AUTHOR_NAME = "author_name";
     public static final String KEY_PATH = "path";
     public static final String FK_IDEA_KEY = "group_id";
@@ -45,7 +47,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String CREATE_GROUP_TABLE = "CREATE TABLE " 
         		+ TABLE_GROUP + "("
                 + KEY_ID + " INTEGER PRIMARY KEY, " 
-        		+ KEY_NAME + " TEXT)";
+        		+ KEY_NAME + " TEXT, "
+        		+ KEY_STATUS + " TEXT, " 
+        		+ KEY_ROUND + " TEXT)";
 
         String CREATE_IDEA_TABLE = "CREATE TABLE " 
         		+ TABLE_IDEA + "("
@@ -84,6 +88,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	    return status;
 	}
 	
+	public long checkIfGroupExists(String groupName) {
+        String countQuery = "SELECT * FROM tbl_group WHERE name='" + groupName + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+ 
+        return cursor.getCount();
+	}
+	
 	/**
 	 * Method for updating existing row in database
 	 * @param values New values
@@ -118,6 +130,19 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	}
 	
 	/**
+	 * Method for getting number of rows in some table
+	 * @param table Table
+	 * @return Row count
+	 */
+    public int getRecordsCount(String table) {
+        String countQuery = "SELECT * FROM " + table;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+ 
+        return cursor.getCount();
+    }
+	
+	/**
 	 * Method for getting list of Group records from database
 	 * @return List<Group> 
 	 */
@@ -134,7 +159,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	        	group = new Group();
 	        	group.setId(Integer.parseInt(cursor.getString(0)));
 	        	group.setName(cursor.getString(1));
-	        	
+	        	group.setStatus(cursor.getString(2));
+	        	group.setRound(cursor.getString(3));
 	        	groupList.add(group);
 	        } while (cursor.moveToNext());
 	    }

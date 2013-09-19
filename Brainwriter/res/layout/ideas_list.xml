@@ -3,58 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
-    
-      <EditText
-          android:id="@+id/group_name"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentRight="true"
-          android:layout_alignParentTop="true"
-          android:ems="20" 
-          android:textSize="30sp"
-          >
-
-        <requestFocus />
-    </EditText>
 
     <LinearLayout
         android:id="@+id/ideas_list_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/group_name"
-        android:orientation="horizontal" 
-        >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <ListView
             android:id="@+id/idea_list"
             android:layout_width="fill_parent"
             android:layout_height="319dp"
-            android:layout_margin="10dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/publish_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:orientation="horizontal" 
-        android:background="#000000"
-        >
-
-        <TextView
-            android:id="@+id/round"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center_horizontal"
-            android:text="Publish"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" 
-            android:layout_margin="5dp"
+            android:layout_margin="10dp" 
             />
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_submit_ideas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ideas_list_layout"
+        android:layout_centerHorizontal="true"
+        android:text="Submit ideas" />
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package org.foi.fmoed.camera;
+package org.foi.fmoed.activities;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
