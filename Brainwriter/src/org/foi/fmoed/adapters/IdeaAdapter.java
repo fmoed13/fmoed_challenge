@@ -42,10 +42,11 @@ public class IdeaAdapter extends BaseAdapter{
 		if (convertView == null){
 			if (position == 0){
 				li = LayoutInflater.from(con);
-				v = li.inflate(R.layout.create_group_layout, null);
-			}
+				v = li.inflate(R.layout.group_status, null);
+			} else {
 				li = LayoutInflater.from(con);
 				v = li.inflate(R.layout.idea_item, null);
+			}
 		}
 		return v;
 	}
