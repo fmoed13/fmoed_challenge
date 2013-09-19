@@ -3,15 +3,19 @@ package org.foi.fmoed.adapters;
 import java.util.List;
 
 import org.foi.fmoed.R;
+import org.foi.fmoed.activities.IdeasActivity;
+import org.foi.fmoed.activities.ResultsActivity;
 import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.models.Group;
 import org.w3c.dom.Text;
 
 import android.content.Context;
+import android.content.Intent;
 import android.sax.RootElement;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -81,6 +85,15 @@ public class GroupAdapter extends BaseAdapter{
 					textStatus.setText(group.getStatus());
 					textRound.setText(group.getRound());
 				}
+				
+				v.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Intent resultsActivity = new Intent(con, ResultsActivity.class);
+						con.startActivity(resultsActivity);
+					}
+				});
 		}
 		return v;
 	}

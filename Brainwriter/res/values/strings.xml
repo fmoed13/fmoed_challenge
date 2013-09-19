@@ -22,4 +22,7 @@
 	
 	<string name="username_hint">Username..</string>
 	
+	<string name="group_results">Group name</string>
+	<string name="round_number">Round number</string>
+	
 </resources>

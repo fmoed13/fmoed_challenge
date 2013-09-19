@@ -59,6 +59,7 @@ public final class R {
         public static final int write=0x7f020023;
     }
     public static final class id {
+<<<<<<< HEAD
         public static final int action_settings=0x7f08001b;
         public static final int btn_save_txt=0x7f080018;
         public static final int btn_submit_ideas=0x7f080015;
@@ -76,29 +77,53 @@ public final class R {
         public static final int group_total=0x7f08000b;
         public static final int idea_list=0x7f080014;
         public static final int ideas_list_layout=0x7f080013;
+=======
+        public static final int action_settings=0x7f08001d;
+        public static final int btn_save_txt=0x7f08001a;
+        public static final int camera_button=0x7f080012;
+        public static final int canvas_button=0x7f080011;
+        public static final int create_group_button=0x7f080002;
+        public static final int editText1=0x7f080003;
+        public static final int edit_name=0x7f080017;
+        public static final int groupName=0x7f080005;
+        public static final int group_list=0x7f080010;
+        public static final int group_list_layout=0x7f08000f;
+        public static final int group_name=0x7f08000b;
+        public static final int group_results_list=0x7f08000a;
+        public static final int group_round=0x7f08000e;
+        public static final int group_time=0x7f08000c;
+        public static final int group_total=0x7f08000d;
+        public static final int idea_list=0x7f080016;
+        public static final int ideas_list_layout=0x7f080015;
+        public static final int lbl_description=0x7f080018;
+>>>>>>> luka
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
         public static final int round=0x7f080007;
-        public static final int save_button=0x7f08001a;
+        public static final int save_button=0x7f08001c;
         public static final int section_label=0x7f080004;
         public static final int status=0x7f080008;
-        public static final int textView1=0x7f080012;
-        public static final int text_button=0x7f080011;
+        public static final int textView1=0x7f080014;
+        public static final int text_button=0x7f080013;
         public static final int total=0x7f080006;
-        public static final int txt_idea_desc=0x7f080017;
-        public static final int username=0x7f080019;
+        public static final int txt_idea_desc=0x7f080019;
+        public static final int user=0x7f080009;
+        public static final int username=0x7f08001b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int create_group_layout=0x7f030001;
         public static final int fragment_main=0x7f030002;
         public static final int group_item=0x7f030003;
-        public static final int group_status=0x7f030004;
-        public static final int groups_list=0x7f030005;
-        public static final int idea_item=0x7f030006;
-        public static final int ideas_list=0x7f030007;
-        public static final int modal_idea_text=0x7f030008;
-        public static final int settings=0x7f030009;
+        public static final int group_result_item=0x7f030004;
+        public static final int group_results=0x7f030005;
+        public static final int group_results_list=0x7f030006;
+        public static final int group_status=0x7f030007;
+        public static final int groups_list=0x7f030008;
+        public static final int idea_item=0x7f030009;
+        public static final int ideas_list=0x7f03000a;
+        public static final int modal_idea_text=0x7f03000b;
+        public static final int settings=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -108,6 +133,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int default_description=0x7f05000e;
         public static final int group_name=0x7f050006;
+        public static final int group_results=0x7f050010;
         public static final int group_status_name=0x7f05000a;
         public static final int group_status_round=0x7f05000d;
         public static final int group_status_time=0x7f05000b;
@@ -115,6 +141,7 @@ public final class R {
         public static final int hello_world=0x7f050002;
         public static final int idea=0x7f050007;
         public static final int round=0x7f050009;
+        public static final int round_number=0x7f050011;
         public static final int title_section1=0x7f050003;
         public static final int title_section2=0x7f050004;
         public static final int title_section3=0x7f050005;
