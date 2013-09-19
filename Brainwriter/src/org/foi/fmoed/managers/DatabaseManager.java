@@ -151,7 +151,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	        	group = new Group();
 	        	group.setId(Integer.parseInt(cursor.getString(0)));
 	        	group.setName(cursor.getString(1));
-	        	
+	        	group.setStatus(cursor.getString(2));
+	        	group.setRound(cursor.getString(3));
 	        	groupList.add(group);
 	        } while (cursor.moveToNext());
 	    }

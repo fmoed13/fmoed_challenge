@@ -23,13 +23,25 @@ public class GroupAdapter extends BaseAdapter{
 	private List<Group> groupList;
 	private int indexGroupList;
 	
+	public void generateGroupFixtures() {
+		Group gr = new Group("first", "finished", "6");
+		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
+		gr = new Group("second", "not started", "0");
+		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
+		gr = new Group("thirs", "in progress", "2");
+		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
+	}
+	
 	public GroupAdapter(Context c) {
 		this.con = c;
 		this.indexGroupList = 0;
 		this.dbManager = new DatabaseManager(c);
+
+		if(this.dbManager.getRecordsCount(DatabaseManager.TABLE_GROUP) <= 0){
+			this.generateGroupFixtures();
+		}
+		
 		this.groupList = this.dbManager.getGroupRecords();
-		Group gr = new Group("new_group", "finished", "2");
-		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
 	}
 	
 	@Override

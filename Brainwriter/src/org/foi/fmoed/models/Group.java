@@ -18,11 +18,11 @@ public class Group {
 		this.name = name;
 	}
 	
-	public Group(String name, String status, String round){
+	public Group(String n, String s, String r){
 		super();
-		this.name = name;
-		this.status = status;
-		this.round = round;
+		this.name = n;
+		this.status = s;
+		this.round = r;
 	}
 	
 	public int getId() {
