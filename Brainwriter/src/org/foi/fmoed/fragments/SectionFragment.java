@@ -113,8 +113,8 @@ public class SectionFragment extends Fragment {
 				
 				@Override
 				public void onClick(View v) {
-					if (!username.getText().toString().equals("")) {
-						settingsManager.setUserName(username.getText().toString());
+					if (!username.getText().toString().trim().equals("")) {
+						settingsManager.setUserName(username.getText().toString().trim());
 						Toast.makeText(getActivity(), "Username saved.", Toast.LENGTH_SHORT).show();
 					} else {
 						Toast.makeText(getActivity(), "Please enter a valid username", Toast.LENGTH_SHORT).show();
