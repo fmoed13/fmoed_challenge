@@ -14,15 +14,15 @@ import android.widget.TextView;
 
 //countdowntimer is an abstract class, so extend it and fill in methods
 public class CountDown extends CountDownTimer {
-
-	public static HashMap<String, CountDown> countDownCache = new HashMap<String, CountDown>();
 	
 	private Context context;
 	private TextView boxTime;
 	private IdeasActivity ideasActivity;
 	private SessionManager sessionManager;
+	
 	public long currentState;
 	public static long tmpCurrentState;
+	public static HashMap<String, CountDown> countDownCache = new HashMap<String, CountDown>();
 	
 	public CountDown(Context ctx) {
 		// interval 1s, time 5m

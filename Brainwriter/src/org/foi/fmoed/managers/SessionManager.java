@@ -48,7 +48,7 @@ public class SessionManager {
 		return String.format(url, (Object[]) strings);
 	}
 
-	public void startSession(final String groupName) {
+	public void startSession(final String groupName, final ProgressDialog progressDialog) {
 
 		Ion.with(this.context, this.formatURL(START_SESSION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
@@ -61,7 +61,7 @@ public class SessionManager {
 									DatabaseManager.TABLE_GROUP);
 							
 						}
-						
+						progressDialog.cancel();
 						IdeasActivity.groupName = groupName;
 						Intent ideasActivity = new Intent(context,
 								IdeasActivity.class);

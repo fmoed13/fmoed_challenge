@@ -7,6 +7,7 @@ import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.managers.SessionManager;
 import org.foi.fmoed.managers.SettingsManager;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,17 +27,17 @@ public class SectionFragment extends Fragment {
 
 	private int sectionNumber;
 	private View rootView;
-
+	private SessionManager sessionManager;
+	private SettingsManager settingsManager;
+	private DatabaseManager databaseManager;
+	
 	/**
 	 * The fragment argument representing the section number for this
 	 * fragment.
 	 */
 	public static final String ARG_SECTION_NUMBER = "section_number";
-
-	SessionManager sessionManager;
-	SettingsManager settingsManager;
-	DatabaseManager databaseManager;
-
+	public ProgressDialog progressDialog;
+	
 	public SectionFragment() {
 	}
 
@@ -85,7 +86,11 @@ public class SectionFragment extends Fragment {
 									"Please provide group name", 
 										Toast.LENGTH_SHORT).show();
 						} else {
-							sessionManager.startSession(sessionName);
+							progressDialog = new ProgressDialog(getActivity());
+							progressDialog.setCancelable(true);
+							progressDialog.setMessage("Loading ....");
+							progressDialog.show();
+							sessionManager.startSession(sessionName, progressDialog);
 						}
 					} else {
 						Toast.makeText(getActivity(), 
