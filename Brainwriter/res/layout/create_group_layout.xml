@@ -9,23 +9,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/add_group" 
-        android:contentDescription="@string/default_description"
         android:background="@drawable/add_group_selector"
-        />
+        android:contentDescription="@string/default_description"
+        android:src="@drawable/add_group" />
 
     <EditText
         android:id="@+id/editText1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="97dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:hint="@string/group_name"
         android:maxLines="1"
         android:singleLine="true"
-        android:textSize="30sp" />
+        android:textSize="30sp" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
