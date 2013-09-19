@@ -18,7 +18,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GroupAdapter extends BaseAdapter{
 	
@@ -71,6 +73,7 @@ public class GroupAdapter extends BaseAdapter{
 		Group group;
 		TextView textName, textStatus, textRound;
 		LayoutInflater li;
+		ImageButton results, addIdea;
 		
 		if (convertView == null){
 				li = LayoutInflater.from(con);
@@ -78,6 +81,9 @@ public class GroupAdapter extends BaseAdapter{
 				textName = (TextView)v.findViewById(R.id.groupName);
 				textStatus = (TextView)v.findViewById(R.id.status);
 				textRound = (TextView)v.findViewById(R.id.round);
+				results = (ImageButton)v.findViewById(R.id.results);
+				addIdea = (ImageButton)v.findViewById(R.id.bulb);
+				
 				
 				if (groupList.size() > indexGroupList) {
 					group = this.groupList.get(indexGroupList++);
@@ -86,12 +92,20 @@ public class GroupAdapter extends BaseAdapter{
 					textRound.setText(group.getRound());
 				}
 				
-				v.setOnClickListener(new OnClickListener() {
+				results.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
 						Intent resultsActivity = new Intent(con, ResultsActivity.class);
 						con.startActivity(resultsActivity);
+					}
+				});
+				
+				addIdea.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						Toast.makeText(con, "Start idea activity", Toast.LENGTH_SHORT).show();
 					}
 				});
 		}
