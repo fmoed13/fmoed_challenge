@@ -5,6 +5,9 @@ import android.content.ContentValues;
 
 public class Group {
 	
+	public static String STATUS_IN_PROGRESS = "in progress";
+	public static String STATUS_FINISHED = "finished";
+	
 	private int id;
 	private String name;
 	private String status;

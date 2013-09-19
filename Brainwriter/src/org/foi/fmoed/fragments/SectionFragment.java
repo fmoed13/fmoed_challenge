@@ -33,8 +33,6 @@ public class SectionFragment extends Fragment {
 
 	private int sectionNumber;
 	private View rootView;
-	private Context con;
-
 
 	/**
 	 * The fragment argument representing the section number for this
@@ -55,6 +53,10 @@ public class SectionFragment extends Fragment {
 
 		if (sessionManager == null) {
 			sessionManager = new SessionManager(getActivity());
+		}
+		
+		if (databaseManager == null) {
+			databaseManager = new DatabaseManager(getActivity());
 		}
 
 		sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
@@ -83,10 +85,15 @@ public class SectionFragment extends Fragment {
 						IdeasActivity.resetStaticVariables();
 						EditText groupNameInput = (EditText) rootView.findViewById(R.id.editText1);
 						String sessionName = groupNameInput.getText().toString();
-						sessionManager.startSession(sessionName);
-						IdeasActivity.groupName = sessionName;
-						Intent ideasActivity = new Intent(getActivity(), IdeasActivity.class);
-						startActivity(ideasActivity);
+						
+						// user nedd to type group name
+						if(sessionName != null && sessionName.length() == 0) {
+							Toast.makeText(getActivity(), 
+									"Please provide group name", 
+										Toast.LENGTH_SHORT).show();
+						} else {
+							sessionManager.startSession(sessionName);
+						}
 					} else {
 						Toast.makeText(getActivity(), 
 							"Please enter your username (Swipe left)", 
