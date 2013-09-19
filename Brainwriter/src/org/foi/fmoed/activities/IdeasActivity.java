@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.foi.fmoed.R;
 import org.foi.fmoed.adapters.IdeaAdapter;
+import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.managers.SessionManager;
 import org.foi.fmoed.managers.SettingsManager;
+import org.foi.fmoed.utilities.CountDown;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ public class IdeasActivity extends FragmentDialogActivity {
 	
 	private Button btnSubmitIdeas;
 	private SessionManager sessionManager;
+	private DatabaseManager dbManager;
 	
 	public ProgressDialog progressDialog;
 	public SettingsManager settingsManager;
@@ -64,6 +67,7 @@ public class IdeasActivity extends FragmentDialogActivity {
 		
 		sessionManager = new SessionManager(this);
 		settingsManager = new SettingsManager(this);
+		dbManager = new DatabaseManager(this);
 	}
 	private OnClickListener onBtnSubmitIdeasClick = new OnClickListener() {
 

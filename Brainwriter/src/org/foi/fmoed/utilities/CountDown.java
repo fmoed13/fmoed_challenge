@@ -21,10 +21,12 @@ public class CountDown extends CountDownTimer {
 	private TextView boxTime;
 	private IdeasActivity ideasActivity;
 	private SessionManager sessionManager;
-
+	public long currentState;
+	public static long tmpCurrentState;
+	
 	public CountDown(Context ctx) {
 		// interval 1s, time 5m
-		super(300000, 1000);
+		super(tmpCurrentState, 1000);
 		context = ctx;
 		ideasActivity = (IdeasActivity) context;
 		sessionManager = new SessionManager(context);
@@ -48,18 +50,20 @@ public class CountDown extends CountDownTimer {
 
 	@Override
 	public void onTick(long millisUntilFinished) {
+		this.currentState = millisUntilFinished;
 		if(!ideasActivity.submitted) {
 			if (boxTime == null) {
 				boxTime = (TextView) ideasActivity.findViewById(R.id.group_time);
 			}
-			String timeAvailable = String.format(Locale.getDefault(), "Time: %d min, %d sec", 
-				    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-				    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - 
-				    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
-				);
-			boxTime.setText(timeAvailable);
-		} else {
-			this.cancel();
+			if (boxTime != null) {
+				String timeAvailable = String.format(Locale.getDefault(), "Time: %d min, %d sec", 
+					    TimeUnit.MILLISECONDS.toMinutes(this.currentState),
+					    TimeUnit.MILLISECONDS.toSeconds(this.currentState) - 
+					    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(this.currentState))
+					);
+				boxTime.setText(timeAvailable);
+			}
+
 		}
 	}
 }

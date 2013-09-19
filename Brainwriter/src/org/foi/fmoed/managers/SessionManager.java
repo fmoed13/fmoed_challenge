@@ -5,6 +5,7 @@ import java.util.List;
 import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.activities.MainActivity;
 import org.foi.fmoed.models.Group;
+import org.foi.fmoed.utilities.CountDown;
 
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -58,8 +59,9 @@ public class SessionManager {
 							dbManager.addRecord(new Group(groupName,
 									Group.STATUS_IN_PROGRESS, "1").getValues(),
 									DatabaseManager.TABLE_GROUP);
+							
 						}
-
+						
 						IdeasActivity.groupName = groupName;
 						Intent ideasActivity = new Intent(context,
 								IdeasActivity.class);
