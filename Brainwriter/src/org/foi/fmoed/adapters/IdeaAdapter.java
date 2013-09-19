@@ -76,7 +76,6 @@ public class IdeaAdapter extends BaseAdapter {
 				
 				CountDown countDown = new CountDown(this.con);
 
-				CountDown countDown = new CountDown(v.getContext());
 				countDown.start();
 
 			} else {
