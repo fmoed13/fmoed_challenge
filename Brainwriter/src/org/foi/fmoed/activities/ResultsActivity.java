@@ -1,12 +1,5 @@
 package org.foi.fmoed.activities;
 
-import java.util.Locale;
-
-import org.foi.fmoed.R;
-import org.foi.fmoed.fragments.ResultFragment;
-import org.foi.fmoed.managers.SessionManager;
-import org.foi.fmoed.managers.SettingsManager;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,8 +8,16 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
-public class ResultsActivity extends FragmentActivity{
+import org.foi.fmoed.R;
+import org.foi.fmoed.fragments.ResultFragment;
+import org.foi.fmoed.managers.SessionManager;
+import org.foi.fmoed.managers.SettingsManager;
 
+import java.util.Locale;
+
+public class ResultsActivity extends FragmentActivity {
+
+    String groupName;
 	RoundsPagerAdapter mRoundsPagerAdapter;
 	SessionManager sessionManager;
 	/**
@@ -35,11 +36,12 @@ public class ResultsActivity extends FragmentActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.group_results);
+        Bundle groupNameBundle = getIntent().getExtras();
+        groupName = groupNameBundle.getString("group_name");
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mRoundsPagerAdapter = new RoundsPagerAdapter(
-				getSupportFragmentManager());
+		mRoundsPagerAdapter = new RoundsPagerAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -69,7 +71,7 @@ public class ResultsActivity extends FragmentActivity{
 		public Fragment getItem(int position) {
 
 			// getItem is called to instantiate the fragment for the given page.
-			Fragment fragment = new ResultFragment();
+			Fragment fragment = new ResultFragment(groupName);
 			Bundle args = new Bundle();
 			args.putInt(ResultFragment.ARG_RESULT_NUMBER, position + 1);
 			fragment.setArguments(args);

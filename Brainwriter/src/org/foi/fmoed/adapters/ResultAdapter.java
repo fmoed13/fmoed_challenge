@@ -1,30 +1,30 @@
 package org.foi.fmoed.adapters;
 
-import java.util.List;
-
-import org.foi.fmoed.R;
-import org.foi.fmoed.activities.ResultsActivity;
-import org.foi.fmoed.managers.DatabaseManager;
-import org.foi.fmoed.models.Group;
-
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class ResultAdapter extends BaseAdapter{
+import org.foi.fmoed.R;
+import org.foi.fmoed.managers.DatabaseManager;
+import org.foi.fmoed.managers.ResultManager;
+import org.foi.fmoed.models.Group;
+
+import java.util.List;
+
+public class ResultAdapter extends BaseAdapter {
 	
 	private Context con;
 	private DatabaseManager dbManager;
 	private List<Group> groupList;
 	private int indexGroupList;
 	
-	public ResultAdapter(Context c) {
+	public ResultAdapter(Context c, String groupName) {
 		this.con = c;
+        ResultManager rm = new ResultManager(c, groupName);
+        rm.getResult();
 	}
 	
 	@Override

@@ -1,11 +1,13 @@
 package org.foi.fmoed.utilities;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.foi.fmoed.R;
 import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.managers.SessionManager;
+
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -13,17 +15,22 @@ import android.widget.TextView;
 //countdowntimer is an abstract class, so extend it and fill in methods
 public class CountDown extends CountDownTimer {
 
+	public static HashMap<String, CountDown> countDownCache = new HashMap<String, CountDown>();
+	
 	private Context context;
 	private TextView boxTime;
 	private IdeasActivity ideasActivity;
 	private SessionManager sessionManager;
-
+	public long currentState;
+	public static long tmpCurrentState;
+	
 	public CountDown(Context ctx) {
 		// interval 1s, time 5m
-		super(300000, 1000);
+		super(tmpCurrentState, 1000);
 		context = ctx;
 		ideasActivity = (IdeasActivity) context;
 		sessionManager = new SessionManager(context);
+		countDownCache.put(IdeasActivity.groupName, this);
 	}
 
 	@Override
@@ -43,18 +50,20 @@ public class CountDown extends CountDownTimer {
 
 	@Override
 	public void onTick(long millisUntilFinished) {
+		this.currentState = millisUntilFinished;
 		if(!ideasActivity.submitted) {
 			if (boxTime == null) {
 				boxTime = (TextView) ideasActivity.findViewById(R.id.group_time);
 			}
-			String timeAvailable = String.format(Locale.getDefault(), "Time: %d min, %d sec", 
-				    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-				    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - 
-				    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
-				);
-			boxTime.setText(timeAvailable);
-		} else {
-			this.cancel();
+			if (boxTime != null) {
+				String timeAvailable = String.format(Locale.getDefault(), "Time: %d min, %d sec", 
+					    TimeUnit.MILLISECONDS.toMinutes(this.currentState),
+					    TimeUnit.MILLISECONDS.toSeconds(this.currentState) - 
+					    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(this.currentState))
+					);
+				boxTime.setText(timeAvailable);
+			}
+
 		}
 	}
 }
