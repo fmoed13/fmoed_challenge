@@ -20,5 +20,6 @@
 	
 	<string name="default_description">Default description</string>
 	
+	<string name="username_hint">Username..</string>
 	
 </resources>

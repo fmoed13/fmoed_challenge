@@ -1,9 +1,6 @@
 package org.foi.fmoed.fragments;
 
 import org.foi.fmoed.R;
-import org.foi.fmoed.activities.IdeasActivity;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;

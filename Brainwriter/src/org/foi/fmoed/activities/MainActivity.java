@@ -1,44 +1,19 @@
 package org.foi.fmoed.activities;
 
-import java.util.List;
 import java.util.Locale;
 
 import org.foi.fmoed.R;
-import org.foi.fmoed.adapters.GroupAdapter;
-import org.foi.fmoed.adapters.IdeaAdapter;
 import org.foi.fmoed.fragments.SectionFragment;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.text.Editable;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 
 import org.foi.fmoed.managers.*;
-import org.foi.fmoed.models.Group;
-import org.foi.fmoed.models.Idea;
-
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
