@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:text="Group"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/round"
-        android:text="@string/total"
+        android:text="TOTAL: x"
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:paddingRight="10dp"
         />
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:text="Status"
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:paddingRight="10dp"
         />
@@ -39,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/status"
-        android:text="@string/round"
+        android:text="Round"
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:paddingRight="10dp"
         />

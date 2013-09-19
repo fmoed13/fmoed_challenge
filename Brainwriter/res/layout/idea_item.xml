@@ -1,49 +1,57 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    
+    >
 
+	<LinearLayout
+	    android:id="@+id/idea_item_layout_1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:layout_alignParentTop="true"
+	    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/canvas_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/camera_button"
-        android:layout_alignBottom="@+id/camera_button"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/canvas_selector"
-        android:src="@drawable/canvas2" 
-        />
+		<TextView
+		    android:id="@+id/textView1"
+		    android:layout_width="118dp"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="40dp"
+		    android:layout_marginLeft="10dp"
+		    android:layout_weight="0.02"
+		    android:text="IDEA"
+		    android:textSize="35sp" />
 
-    <Button
-        android:id="@+id/camera_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/text_button"
-        android:layout_alignBottom="@+id/text_button"
-        android:layout_toLeftOf="@+id/canvas_button"
-        android:background="@drawable/camera_selector"
-        android:src="@drawable/camera2" />
+	</LinearLayout>
 
-    <Button
-        android:id="@+id/text_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@+id/camera_button"
-        android:background="@drawable/text_selector"
-        android:src="@drawable/text" />
+	<ImageButton
+	    android:id="@+id/imageButton1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentTop="true"
+	    android:layout_marginRight="74dp"
+	    android:layout_marginTop="29dp"
+	    android:layout_toLeftOf="@+id/imageButton2"
+	    android:src="@drawable/text1" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/text_button"
-        android:layout_alignBottom="@+id/text_button"
-        android:layout_marginLeft="14dp"
-        android:text="@string/idea"
-        android:textSize="21sp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+	<ImageButton
+	    android:id="@+id/imageButton3"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignTop="@+id/imageButton2"
+	    android:layout_marginRight="50dp"
+	    android:scaleType="fitCenter"
+	    android:src="@drawable/canvas" />
+
+	<ImageButton
+	    android:id="@+id/imageButton2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@+id/imageButton1"
+	    android:layout_marginRight="61dp"
+	    android:layout_toLeftOf="@+id/imageButton3"
+	    android:scaleType="fitCenter"
+	    android:src="@drawable/camera" />
 
 </RelativeLayout>

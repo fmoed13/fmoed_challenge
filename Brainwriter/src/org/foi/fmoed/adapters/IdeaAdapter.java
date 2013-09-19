@@ -1,34 +1,16 @@
 package org.foi.fmoed.adapters;
 
 import org.foi.fmoed.R;
-import org.foi.fmoed.activities.FragmentDialogActivity;
-import org.foi.fmoed.activities.IdeasActivity;
-import org.foi.fmoed.fragments.ModalIdeaTextFragment;
-import org.foi.fmoed.fragments.ModalIdeaTextFragment.EditNameDialogListener;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.os.Bundle;
-import android.sax.StartElementListener;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 
-
-
-public class IdeaAdapter extends BaseAdapter {
+public class IdeaAdapter extends BaseAdapter{
 	
 	private Context con;
-	private Button addTextBtn;
-	TextView boxGroupName;
-	
 	
 	public IdeaAdapter(Context c) {
 		this.con = c;
@@ -37,7 +19,7 @@ public class IdeaAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 3;
 	}
 
 	@Override
@@ -54,38 +36,14 @@ public class IdeaAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		final int pos = position;
 		View v = convertView;
 		LayoutInflater li;
-		
 		if (convertView == null){
-			if (position == 0){
-				li = LayoutInflater.from(con);
-				v = li.inflate(R.layout.group_status, null);
-				
-				boxGroupName = (TextView)v.findViewById(R.id.group_name);
-				boxGroupName.append(IdeasActivity.groupName);
-			} else {
 				li = LayoutInflater.from(con);
 				v = li.inflate(R.layout.idea_item, null);
-				addTextBtn = new Button(parent.getContext());
-				addTextBtn = (Button)v.findViewById(R.id.text_button);
-				addTextBtn.setOnClickListener(addTextBtnListener);
-				addTextBtn.setTag(position);
-			}
 		}
 		return v;
 	}
 
-	private OnClickListener addTextBtnListener = new OnClickListener() {
-
-	    @Override
-	    public void onClick(final View v) {
-	    	Button btn = (Button)v;
-	    	Context ctx = v.getContext();
-	    	IdeasActivity ideasActivity = (IdeasActivity)ctx;
-	    	ideasActivity.idea_id = (Integer)btn.getTag();
-	    	ideasActivity.showEditDialog();
-	    }
-	};
-	
 }

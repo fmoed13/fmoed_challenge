@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/photo_placeholder"
+            android:layout_alignParentTop="true"
+            android:padding="50dp"
+            android:layout_centerInParent="true"/>
+
+    <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/retakePhotoButton"
+            android:src="@drawable/camera"
+            android:background="@null"
+            android:contentDescription="Retake photo"
+            android:scaleType="centerCrop"
+            android:layout_alignTop="@+id/cancelRequestButton"
+            android:layout_centerHorizontal="true"/>
+
+    <ImageButton
+        android:id="@+id/savePhotoButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/retakePhotoButton"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/retakePhotoButton"
+        android:background="@null"
+        android:contentDescription="Accept"
+        android:maxHeight="@dimen/activity_horizontal_margin"
+        android:maxWidth="@dimen/activity_vertical_margin"
+        android:src="@drawable/accept" />
+
+    <ImageButton
+        android:id="@+id/cancelRequestButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/retakePhotoButton"
+        android:background="@null"
+        android:contentDescription="Close"
+        android:maxHeight="@dimen/activity_horizontal_margin"
+        android:maxWidth="@dimen/activity_vertical_margin"
+        android:scaleType="centerCrop"
+        android:src="@drawable/decline" />
+
+</RelativeLayout>
