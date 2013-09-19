@@ -1,11 +1,13 @@
 package org.foi.fmoed.utilities;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.foi.fmoed.R;
 import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.managers.SessionManager;
+
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 //countdowntimer is an abstract class, so extend it and fill in methods
 public class CountDown extends CountDownTimer {
 
+	public static HashMap<String, CountDown> countDownCache = new HashMap<String, CountDown>();
+	
 	private Context context;
 	private TextView boxTime;
 	private IdeasActivity ideasActivity;
@@ -24,6 +28,7 @@ public class CountDown extends CountDownTimer {
 		context = ctx;
 		ideasActivity = (IdeasActivity) context;
 		sessionManager = new SessionManager(context);
+		countDownCache.put(IdeasActivity.groupName, this);
 	}
 
 	@Override
