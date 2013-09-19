@@ -40,6 +40,7 @@ public final class R {
         public static final int text_icon=0x7f020010;
     }
     public static final class id {
+<<<<<<< HEAD
         public static final int action_settings=0x7f080018;
         public static final int cancelRequestButton=0x7f080004;
         public static final int create_group_button=0x7f080007;
@@ -75,6 +76,18 @@ public final class R {
         public static final int groups_list=0x7f030005;
         public static final int idea_item=0x7f030006;
         public static final int ideas_list=0x7f030007;
+=======
+        public static final int action_settings=0x7f080004;
+        public static final int myDrawing=0x7f080002;
+        public static final int pager=0x7f080000;
+        public static final int pager_title_strip=0x7f080001;
+        public static final int section_label=0x7f080003;
+    }
+    public static final class layout {
+        public static final int activity_main=0x7f030000;
+        public static final int drawer=0x7f030001;
+        public static final int fragment=0x7f030002;
+>>>>>>> canvas
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -87,6 +100,10 @@ public final class R {
         public static final int title_section1=0x7f050003;
         public static final int title_section2=0x7f050004;
         public static final int title_section3=0x7f050005;
+<<<<<<< HEAD
+=======
+        public static final int title_section4=0x7f050006;
+>>>>>>> canvas
     }
     public static final class style {
         /** 
