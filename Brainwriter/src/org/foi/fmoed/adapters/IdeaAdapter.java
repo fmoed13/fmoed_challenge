@@ -19,7 +19,7 @@ public class IdeaAdapter extends BaseAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -40,6 +40,10 @@ public class IdeaAdapter extends BaseAdapter{
 		View v = convertView;
 		LayoutInflater li;
 		if (convertView == null){
+			if (position == 0){
+				li = LayoutInflater.from(con);
+				v = li.inflate(R.layout.create_group_layout, null);
+			}
 				li = LayoutInflater.from(con);
 				v = li.inflate(R.layout.idea_item, null);
 		}

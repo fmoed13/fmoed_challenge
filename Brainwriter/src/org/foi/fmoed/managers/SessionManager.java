@@ -53,7 +53,7 @@ public class SessionManager {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
 						String res = result.get("message").toString();
-						Log.i("sessinnStart", "started");
+						Log.i("sessionStart", "started");
 						// TODO: check if session is started without errors...
 					}
 				});

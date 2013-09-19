@@ -16,8 +16,8 @@
 		    android:id="@+id/textView1"
 		    android:layout_width="118dp"
 		    android:layout_height="wrap_content"
-		    android:layout_marginTop="40dp"
 		    android:layout_marginLeft="10dp"
+		    android:layout_marginTop="40dp"
 		    android:layout_weight="0.02"
 		    android:text="IDEA"
 		    android:textSize="35sp" />
@@ -25,33 +25,31 @@
 	</LinearLayout>
 
 	<ImageButton
-	    android:id="@+id/imageButton1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentTop="true"
-	    android:layout_marginRight="74dp"
-	    android:layout_marginTop="29dp"
-	    android:layout_toLeftOf="@+id/imageButton2"
-	    android:src="@drawable/text1" />
+	    android:id="@+id/imageButton2"
+	    android:layout_width="50dp"
+	    android:layout_height="50dp"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignTop="@+id/imageButton3"
+	    android:layout_marginRight="45dp"
+	    android:scaleType="fitCenter"
+	    android:src="@drawable/camera" />
 
 	<ImageButton
 	    android:id="@+id/imageButton3"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
+	    android:layout_width="50dp"
+	    android:layout_height="50dp"
 	    android:layout_alignParentRight="true"
-	    android:layout_alignTop="@+id/imageButton2"
-	    android:layout_marginRight="50dp"
+	    android:layout_alignParentTop="true"
+	    android:layout_marginTop="41dp"
 	    android:scaleType="fitCenter"
 	    android:src="@drawable/canvas" />
 
 	<ImageButton
-	    android:id="@+id/imageButton2"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignTop="@+id/imageButton1"
-	    android:layout_marginRight="61dp"
-	    android:layout_toLeftOf="@+id/imageButton3"
-	    android:scaleType="fitCenter"
-	    android:src="@drawable/camera" />
+	    android:id="@+id/imageButton1"
+	    android:layout_width="50dp"
+	    android:layout_height="50dp"
+	    android:layout_alignTop="@+id/imageButton2"
+	    android:layout_toLeftOf="@+id/imageButton2"
+	    android:src="@drawable/write" />
 
 </RelativeLayout>

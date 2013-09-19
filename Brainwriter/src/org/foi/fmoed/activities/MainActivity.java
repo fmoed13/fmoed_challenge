@@ -85,7 +85,7 @@ public class MainActivity extends FragmentActivity {
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
-
+		
 		@Override
 		public Fragment getItem(int position) {
 
