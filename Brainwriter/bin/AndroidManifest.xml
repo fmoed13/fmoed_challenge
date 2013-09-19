@@ -30,6 +30,9 @@
        	<activity
             android:name="org.foi.fmoed.activities.FragmentDialogActivity">
         </activity>
+        <activity
+            android:name="org.foi.fmoed.activities.ResultsActivity">
+        </activity>
     </application>
 
 </manifest>

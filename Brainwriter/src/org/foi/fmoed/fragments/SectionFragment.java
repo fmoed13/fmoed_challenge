@@ -66,6 +66,7 @@ public class SectionFragment extends Fragment {
 			GroupAdapter groupAdapter = new GroupAdapter(getActivity());
 			groupList.setAdapter(groupAdapter);
 			
+			
 		} else if (sectionNumber == 2) {
 			rootView = inflater.inflate(R.layout.create_group_layout,
 					container, false);
