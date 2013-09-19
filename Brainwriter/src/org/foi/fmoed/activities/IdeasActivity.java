@@ -5,13 +5,17 @@ import org.foi.fmoed.adapters.IdeaAdapter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.sax.RootElement;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
-public class IdeasActivity extends Activity {
+public class IdeasActivity extends FragmentDialogActivity {
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	public void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ideas_list);
 		
@@ -19,5 +23,4 @@ public class IdeasActivity extends Activity {
 		IdeaAdapter ideaAdapter = new IdeaAdapter(IdeasActivity.this);
 		groupList.setAdapter(ideaAdapter);
 	}
-	
 }
