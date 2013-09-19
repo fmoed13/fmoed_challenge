@@ -5,15 +5,6 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/groupName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Group"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
         android:id="@+id/total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,6 +35,37 @@
         android:text="Round"
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:paddingRight="10dp"
+        />
+
+    <TextView
+        android:id="@+id/groupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/total"
+        android:layout_alignParentLeft="true"
+        android:text="Group"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageButton
+        android:id="@+id/bulb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/bulb" 
+        android:background="@drawable/bulb_selector"
+        />
+
+    <ImageButton
+        android:id="@+id/results"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/bulb"
+        android:scaleType="centerInside"
+        android:src="@drawable/results" 
+        android:background="@drawable/result_selector"
         />
 
 </RelativeLayout>
