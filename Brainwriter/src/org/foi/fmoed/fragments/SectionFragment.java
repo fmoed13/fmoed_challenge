@@ -88,6 +88,13 @@ public class SectionFragment extends Fragment {
 								Toast.LENGTH_SHORT).show();
 					}
 					
+					IdeasActivity.resetStaticVariables();
+					EditText groupNameInput = (EditText) rootView.findViewById(R.id.editText1);
+					String sessionName = groupNameInput.getText().toString();
+					sessionManager.startSession(sessionName);
+					IdeasActivity.groupName = sessionName;
+					Intent ideasActivity = new Intent(getActivity(), IdeasActivity.class);
+					startActivity(ideasActivity);
 				}
 			});
 

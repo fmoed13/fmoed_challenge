@@ -13,7 +13,7 @@
 	<string name="total">Total: def</string>
 	<string name="round">Round</string>
 	
-	<string name="group_status_name">Group: name</string>
+	<string name="group_status_name">Group: </string>
 	<string name="group_status_time">Time: none</string>
 	<string name="group_status_total">Total: 35 ideas</string>
 	<string name="group_status_round">Round: 2</string>

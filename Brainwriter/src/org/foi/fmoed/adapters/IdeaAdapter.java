@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Bundle;
 import android.sax.StartElementListener;
@@ -26,8 +27,8 @@ public class IdeaAdapter extends BaseAdapter {
 	
 	private Context con;
 	private Button addTextBtn;
-	private Button addCanvasImageBtn;
-	private Button addPhotoImageBtn;
+	TextView boxGroupName;
+	
 	
 	public IdeaAdapter(Context c) {
 		this.con = c;
@@ -53,19 +54,23 @@ public class IdeaAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		final int pos = position;
 		View v = convertView;
 		LayoutInflater li;
+		
 		if (convertView == null){
 			if (position == 0){
 				li = LayoutInflater.from(con);
 				v = li.inflate(R.layout.group_status, null);
+				
+				boxGroupName = (TextView)v.findViewById(R.id.group_name);
+				boxGroupName.append(IdeasActivity.groupName);
 			} else {
 				li = LayoutInflater.from(con);
 				v = li.inflate(R.layout.idea_item, null);
-				
+				addTextBtn = new Button(parent.getContext());
 				addTextBtn = (Button)v.findViewById(R.id.text_button);
 				addTextBtn.setOnClickListener(addTextBtnListener);
+				addTextBtn.setTag(position);
 			}
 		}
 		return v;
@@ -75,8 +80,10 @@ public class IdeaAdapter extends BaseAdapter {
 
 	    @Override
 	    public void onClick(final View v) {
+	    	Button btn = (Button)v;
 	    	Context ctx = v.getContext();
 	    	IdeasActivity ideasActivity = (IdeasActivity)ctx;
+	    	ideasActivity.idea_id = (Integer)btn.getTag();
 	    	ideasActivity.showEditDialog();
 	    }
 	};
