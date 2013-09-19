@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Group: name"
+        android:text="@string/group_status_name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -18,26 +18,26 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Time: 2min"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/group_round"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="15dp"
-        android:text="Round: 2"
+        android:text="@string/group_status_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/group_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView3"
         android:layout_alignParentRight="true"
-        android:text="Total: 35 ideas"
+        android:layout_below="@+id/group_time"
+        android:text="@string/group_status_total"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/group_round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/group_total"
+        android:layout_alignBottom="@+id/group_total"
+        android:layout_alignParentLeft="true"
+        android:text="@string/group_status_round"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

@@ -3,45 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
-        android:id="@+id/idea_item_layout_1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical" >
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/canvas_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/camera_button"
+        android:layout_alignBottom="@+id/camera_button"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/canvas_selector"
+        android:src="@drawable/canvas2" 
+        />
 
     <Button
         android:id="@+id/camera_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/text_button"
+        android:layout_alignBottom="@+id/text_button"
+        android:layout_toLeftOf="@+id/canvas_button"
+        android:background="@drawable/camera_selector"
+        android:src="@drawable/camera2" />
+
+    <Button
+        android:id="@+id/text_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@+id/camera_button"
+        android:background="@drawable/text_selector"
+        android:src="@drawable/text" />
+
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/text_button"
         android:layout_alignBottom="@+id/text_button"
-        android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/text_button"
-        android:text="camera"
-        android:background="@drawable/camera_selector"
-         />
-
-    <Button
-        android:id="@+id/text_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="26dp"
-        android:layout_toRightOf="@+id/idea_item_layout_1"
-        android:text="text" 
-        />
-
-    <Button
-        android:id="@+id/canvas_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/camera_button"
-        android:layout_alignBottom="@+id/camera_button"
-        android:layout_alignParentRight="true"
-        android:text="canvas" />
+        android:layout_marginLeft="14dp"
+        android:text="@string/idea"
+        android:textSize="21sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

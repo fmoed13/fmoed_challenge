@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/round"
-        android:text="TOTAL: x"
+        android:text="@string/total"
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:paddingRight="10dp"
         />
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/status"
-        android:text="Round"
+        android:text="@string/round"
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:paddingRight="10dp"
         />
