@@ -1,5 +1,6 @@
-package org.foi.fmoed;
+package org.foi.fmoed.activities;
 
+import org.foi.fmoed.R;
 import org.foi.fmoed.adapters.IdeaAdapter;
 
 import android.app.Activity;

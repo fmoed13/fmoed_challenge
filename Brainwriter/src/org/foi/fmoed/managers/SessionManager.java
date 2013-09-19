@@ -3,8 +3,8 @@ package org.foi.fmoed.managers;
 import java.io.File;
 import java.util.List;
 
-import org.foi.fmoed.MainActivity;
 import org.foi.fmoed.R;
+import org.foi.fmoed.activities.MainActivity;
 
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
