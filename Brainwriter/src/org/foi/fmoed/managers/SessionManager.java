@@ -4,18 +4,24 @@ import java.io.File;
 import java.util.List;
 
 import org.foi.fmoed.R;
+import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.activities.MainActivity;
 
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.ProgressCallback;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.SumPathEffect;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ProgressBar;
 import retrofit.Server;
 
 public class SessionManager {
@@ -28,11 +34,13 @@ public class SessionManager {
 	public static String RESULTS = SERVER + "results?group=%s";
 
 	private Context context;
-	
-	public SessionManager(Context Context) {
-		this.context = Context;
+	private ProgressBar progressBar;
+	private IdeasActivity activity;
+
+	public SessionManager(Context ctx) {
+		this.context = ctx;
 	}
-	
+
 	/**
 	 * Method for formating URLs
 	 * 
@@ -79,28 +87,38 @@ public class SessionManager {
 				});
 	}
 
-	public void submitIdea(String groupName, String userName, List<String> ideasTexts) {
+	public void submitIdea(String groupName, String userName,
+			List<String> ideasTexts, final ProgressDialog progressDialog) {
 		Ion.with(this.context, this.formatURL(SUBMIT_IDEA, groupName, userName))
+				.uploadProgressDialog(progressDialog)
+				.uploadProgress(new ProgressCallback() {
+					@Override
+					public void onProgress(int uploaded, int total) {
+						progressDialog.setProgress(uploaded);
+						progressDialog.setMax(total);
+					}
+				})
 				.setMultipartParameter("text1", ideasTexts.get(0))
 				.setMultipartParameter("text2", ideasTexts.get(1))
 				.setMultipartParameter("text3", ideasTexts.get(2))
-				.asJsonObject()
-				.setCallback(new FutureCallback<JsonObject>() {
+				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
+						progressDialog.dismiss();
 						Log.i("submitIdea", "completed...");
 					}
 				});
 	}
 
 	public void receiveIdea(String groupName, String userName) {
-		Ion.with(this.context, this.formatURL(RECEIVE_IDEA, groupName, userName))
-		.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
-			@Override
-			public void onCompleted(Exception e, JsonObject result) {
-				Log.i("receiveIdea", "received...");
-			}
-		});
+		Ion.with(this.context,
+				this.formatURL(RECEIVE_IDEA, groupName, userName))
+				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
+					@Override
+					public void onCompleted(Exception e, JsonObject result) {
+						Log.i("receiveIdea", "received...");
+					}
+				});
 	}
 
 	public void sessionResults(String groupName) {

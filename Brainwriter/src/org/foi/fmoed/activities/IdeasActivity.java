@@ -10,6 +10,7 @@ import org.foi.fmoed.managers.SessionManager;
 import org.foi.fmoed.managers.SettingsManager;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.sax.RootElement;
 import android.util.Log;
@@ -17,11 +18,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class IdeasActivity extends FragmentDialogActivity {
 	
 	private Button btnSubmitIdeas;
+	private ProgressDialog progressDialog;
 	
 	private SessionManager sessionManager;
 	private SettingsManager settingsManager;
@@ -53,6 +56,12 @@ public class IdeasActivity extends FragmentDialogActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ideas_list);
 		
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setCancelable(true);
+		progressDialog.setMessage("Uploading ideas ...");
+		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		progressDialog.setIndeterminate(false);
+		
 		btnSubmitIdeas = (Button)findViewById(R.id.btn_submit_ideas);
 		btnSubmitIdeas.setOnClickListener(onBtnSubmitIdeasClick);
 		
@@ -68,7 +77,8 @@ public class IdeasActivity extends FragmentDialogActivity {
 
 	    @Override
 	    public void onClick(final View v) {
-	    	sessionManager.submitIdea(groupName, settingsManager.getUserName(), getIdeasTextsList());
+			progressDialog.show();
+	    	sessionManager.submitIdea(groupName, settingsManager.getUserName(), getIdeasTextsList(), progressDialog);
 	    }
 	};
 }

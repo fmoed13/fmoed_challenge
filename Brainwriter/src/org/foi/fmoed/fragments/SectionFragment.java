@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class SectionFragment extends Fragment {
 	private int sectionNumber;
 	private View rootView;
 	private Context con;
+
 
 	/**
 	 * The fragment argument representing the section number for this
