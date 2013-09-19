@@ -1,55 +1,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    
-    >
+    android:layout_height="match_parent" >
 
-	<LinearLayout
-	    android:id="@+id/idea_item_layout_1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="match_parent"
-	    android:layout_alignParentTop="true"
-	    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/idea_item_layout_1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
 
-		<TextView
-		    android:id="@+id/textView1"
-		    android:layout_width="118dp"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="10dp"
-		    android:layout_marginTop="40dp"
-		    android:layout_weight="0.02"
-		    android:text="IDEA"
-		    android:textSize="35sp" />
+    </LinearLayout>
 
-	</LinearLayout>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/button1"
+        android:text="camera" />
 
-	<ImageButton
-	    android:id="@+id/imageButton2"
-	    android:layout_width="50dp"
-	    android:layout_height="50dp"
-	    android:layout_alignParentRight="true"
-	    android:layout_alignTop="@+id/imageButton3"
-	    android:layout_marginRight="45dp"
-	    android:scaleType="fitCenter"
-	    android:src="@drawable/camera" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="26dp"
+        android:layout_toRightOf="@+id/idea_item_layout_1"
+        android:text="text" />
 
-	<ImageButton
-	    android:id="@+id/imageButton3"
-	    android:layout_width="50dp"
-	    android:layout_height="50dp"
-	    android:layout_alignParentRight="true"
-	    android:layout_alignParentTop="true"
-	    android:layout_marginTop="41dp"
-	    android:scaleType="fitCenter"
-	    android:src="@drawable/canvas" />
-
-	<ImageButton
-	    android:id="@+id/imageButton1"
-	    android:layout_width="50dp"
-	    android:layout_height="50dp"
-	    android:layout_alignTop="@+id/imageButton2"
-	    android:layout_toLeftOf="@+id/imageButton2"
-	    android:src="@drawable/write" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignParentRight="true"
+        android:text="canvas" />
 
 </RelativeLayout>

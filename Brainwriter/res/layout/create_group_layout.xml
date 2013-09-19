@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:src="@drawable/add_group" 
-        android:background="@null"
+        android:background="@drawable/add_group_selector"
         />
 
 </RelativeLayout>
