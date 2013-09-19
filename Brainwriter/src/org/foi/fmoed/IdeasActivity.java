@@ -1,10 +1,7 @@
 package org.foi.fmoed;
 
-import org.foi.fmoed.adapters.IdeaAdapter;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.ListView;
 
 public class IdeasActivity extends Activity {
 	

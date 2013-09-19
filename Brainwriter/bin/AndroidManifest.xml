@@ -3,15 +3,11 @@
     package="org.foi.fmoed"
     android:versionCode="1"
     android:versionName="1.0" >
-<<<<<<< HEAD
- 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    
-=======
-    
+
+ 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>  
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
     <uses-permission android:name="android.permission.SET_WALLPAPER" /> 
 
->>>>>>> canvas
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="17" />
@@ -21,21 +17,22 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
-            android:name="org.foi.fmoed.camera.CameraActivity"
+            android:name="org.foi.fmoed.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+        
         <activity
             android:name="org.foi.fmoed.IdeasActivity"
             android:label="@string/app_name" >
         </activity>
-=======
+        
         <activity 
             android:name="org.foi.fmoed.canvas.Drawer" >
             <intent-filter>
@@ -45,7 +42,15 @@
             </intent-filter>
         </activity>
         
->>>>>>> canvas
+                <activity 
+            android:name="org.foi.fmoed.camera.CameraActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>

@@ -6,13 +6,8 @@
     tools:context=".MainActivity" >
 
     <!--
-<<<<<<< HEAD
     This title strip will display the currently visible page title, as well as the page
     titles for adjacent pages.
-=======
-This title strip will display the currently visible page title, as well as the page
-titles for adjacent pages.
->>>>>>> canvas
     -->
 
     <android.support.v4.view.PagerTitleStrip
@@ -23,11 +18,7 @@ titles for adjacent pages.
         android:background="#555555"
         android:paddingBottom="4dp"
         android:paddingTop="4dp"
-<<<<<<< HEAD
         android:textColor="#fff" 
         />
-=======
-        android:textColor="#fff" />
->>>>>>> canvas
 
 </android.support.v4.view.ViewPager>

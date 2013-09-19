@@ -4,17 +4,9 @@
     <string name="app_name">Brainwriter</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-<<<<<<< HEAD
     <string name="title_section1">Groups</string>
     <string name="title_section2">New group</string>
     <string name="title_section3">Stuff</string>
     <string name="group_name">Enter group name..</string>
-=======
-    
-    <string name="title_section1">Groups</string>
-    <string name="title_section2">Ideas</string>
-    <string name="title_section3">Favorites</string>
-    <string name="title_section4">Credentias</string>
->>>>>>> canvas
 
 </resources>

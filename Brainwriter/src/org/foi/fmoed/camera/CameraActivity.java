@@ -1,5 +1,12 @@
 package org.foi.fmoed.camera;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.UUID;
+
+import org.foi.fmoed.R;
+import org.foi.fmoed.managers.MultimediaManager;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,12 +17,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
-import org.foi.fmoed.R;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.util.UUID;
+import android.widget.Toast;
 
 public class CameraActivity extends Activity {
 
@@ -26,6 +28,8 @@ public class CameraActivity extends Activity {
 
     private ImageView imageView;
     private byte[] imageBytes = null;
+    
+    private MultimediaManager mm;
 
 
     public String PICTURES_DIR = "Pictures/";
@@ -62,7 +66,8 @@ public class CameraActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                 // TODO: accept this photo
+            	String status = (mm.saveImage(Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888))) ? "Wallpaper has been setted up" : "Error Saving Image";
+    			Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,18 +1,14 @@
 package org.foi.fmoed.canvas;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import org.foi.fmoed.R;
 import org.foi.fmoed.canvas.ColorPicker.OnColorChangedListener;
+import org.foi.fmoed.managers.MultimediaManager;
 
 import android.app.Activity;
-import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -37,8 +33,6 @@ import android.graphics.SweepGradient;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -115,8 +109,9 @@ public class Drawer extends Activity implements OnColorChangedListener {
 	private Paint mPaint;
 	Activity activity;
 	View mView;
-	int penColor = Color.DKGRAY;
-	int penSize = 7;
+	private MultimediaManager mm;
+	private int penColor = Color.DKGRAY;
+	private int penSize = 7;
 
 	private void init() {
 		mPaint = new Paint();
@@ -233,35 +228,6 @@ public class Drawer extends Activity implements OnColorChangedListener {
 			invalidate();
 		}
 		
-		public void saveAsJpg(File file, View v, boolean setWallpaper) {
-
-			try {
-				Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(),
-						Bitmap.Config.ARGB_8888);
-				FileOutputStream out = new FileOutputStream(file);
-				Canvas c = new Canvas(b);
-				v.draw(c);
-		           
-				if (setWallpaper) {
-					WallpaperManager myWallpaperManager = WallpaperManager
-							.getInstance(getApplicationContext());
-					try {
-						myWallpaperManager.setBitmap(b);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					Toast.makeText(activity, "Wallpaper has been setted up", Toast.LENGTH_SHORT).show();
-				} else {
-					b.compress(Bitmap.CompressFormat.JPEG, 100, out);
-			           out.flush();
-			           out.close();
-					Toast.makeText(activity, "Image Saved", Toast.LENGTH_SHORT).show();
-				}
-			} catch (Exception ex) {
-				Toast.makeText(activity, "Error Saving Image", Toast.LENGTH_SHORT).show();
-				Log.i("SAVE ex", ex.toString());
-			}
-		}
 	}
 
 	private boolean isDrawBorder = true;
@@ -319,13 +285,8 @@ public class Drawer extends Activity implements OnColorChangedListener {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
-		String root = Environment.getExternalStorageDirectory().toString();
-	    File myDir = new File(root + "/Images");    
-	    myDir.mkdirs();
-	    String fname = "image" + UUID.randomUUID() + ".jpg";
-	    File file = new File (myDir, fname);
-	    if (file.exists ()) file.delete (); 
-
+		String status;
+		
 		switch (item.getItemId()) {
 
 		case 0:
@@ -370,12 +331,14 @@ public class Drawer extends Activity implements OnColorChangedListener {
 			mPaint.setAlpha(0x80);
 			return true;
 
-		case 6:
-			((DrawingView) mView).saveAsJpg(file, mView, true);
+		case 6: 
+			status = (mm.saveImage(mView, true)) ? "Wallpaper has been setted up" : "Error Saving Image";
+			Toast.makeText(activity, status, Toast.LENGTH_SHORT).show();
 			return true;
 
 		case 7:
-			((DrawingView) mView).saveAsJpg(file, mView, false);
+			status = (mm.saveImage(mView, false)) ? "Image Saved" : "Error Saving Image";
+			Toast.makeText(activity, status, Toast.LENGTH_SHORT).show();
 			return true;
 
 		case 8:
