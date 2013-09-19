@@ -1,24 +1,24 @@
 package org.foi.fmoed.fragments;
 
-import org.foi.fmoed.R;
-import org.foi.fmoed.activities.IdeasActivity;
-import org.foi.fmoed.adapters.GroupAdapter;
-import org.foi.fmoed.managers.DatabaseManager;
-import org.foi.fmoed.managers.SessionManager;
-import org.foi.fmoed.managers.SettingsManager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.foi.fmoed.R;
+import org.foi.fmoed.activities.IdeasActivity;
+import org.foi.fmoed.adapters.GroupAdapter;
+import org.foi.fmoed.managers.DatabaseManager;
+import org.foi.fmoed.managers.SessionManager;
+import org.foi.fmoed.managers.SettingsManager;
 
 /**
  * A dummy fragment representing a section of the app, but that simply
@@ -79,12 +79,9 @@ public class SectionFragment extends Fragment {
 			});
 
 		} else {
-			rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			rootView = inflater.inflate(R.layout.settings, container, false);
+			TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
+			dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 		}
 
 		return rootView;
