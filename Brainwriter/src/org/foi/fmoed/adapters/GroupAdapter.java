@@ -1,19 +1,8 @@
 package org.foi.fmoed.adapters;
 
-import java.util.List;
-
-import org.foi.fmoed.R;
-import org.foi.fmoed.activities.IdeasActivity;
-import org.foi.fmoed.activities.ResultsActivity;
-import org.foi.fmoed.managers.DatabaseManager;
-import org.foi.fmoed.models.Group;
-import org.w3c.dom.Text;
-
 import android.content.Context;
 import android.content.Intent;
-import android.sax.RootElement;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -21,6 +10,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.foi.fmoed.R;
+import org.foi.fmoed.activities.ResultsActivity;
+import org.foi.fmoed.managers.DatabaseManager;
+import org.foi.fmoed.models.Group;
+
+import java.util.List;
 
 public class GroupAdapter extends BaseAdapter{
 	
@@ -71,7 +67,7 @@ public class GroupAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		Group group;
-		TextView textName, textStatus, textRound;
+		final TextView textName, textStatus, textRound;
 		LayoutInflater li;
 		ImageButton results, addIdea;
 		
@@ -97,6 +93,9 @@ public class GroupAdapter extends BaseAdapter{
 					@Override
 					public void onClick(View v) {
 						Intent resultsActivity = new Intent(con, ResultsActivity.class);
+
+                        resultsActivity.putExtra("group_name", textName.getText().toString());
+
 						con.startActivity(resultsActivity);
 					}
 				});
