@@ -2,6 +2,7 @@ package org.foi.fmoed.adapters;
 
 import org.foi.fmoed.R;
 import org.foi.fmoed.activities.IdeasActivity;
+import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.utilities.CountDown;
 
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 public class IdeaAdapter extends BaseAdapter {
 	
+	private DatabaseManager dbManager;
 	private Context con;
 	private Button addTextBtn;
 	TextView boxGroupName;
@@ -57,9 +59,21 @@ public class IdeaAdapter extends BaseAdapter {
 				
 				boxGroupName = (TextView)v.findViewById(R.id.group_name);
 				boxGroupName.append(IdeasActivity.groupName);
+				dbManager = new DatabaseManager(v.getContext());
+				this.con = li.getContext();
 				
-				CountDown countDown = new CountDown(v.getContext());
+				if(CountDown.countDownCache.containsKey(IdeasActivity.groupName)) {
+					CountDown _countDown = CountDown.countDownCache.get(IdeasActivity.groupName);
+					CountDown.tmpCurrentState = _countDown.currentState;
+					_countDown.cancel();
+					CountDown.countDownCache.remove(IdeasActivity.groupName);
+				} else {
+					CountDown.tmpCurrentState = 300000;
+				}
+				
+				CountDown countDown = new CountDown(this.con);
 				countDown.start();
+
 			} else {
 				v = li.inflate(R.layout.idea_item, null);
 				addTextBtn = new Button(parent.getContext());
@@ -82,5 +96,4 @@ public class IdeaAdapter extends BaseAdapter {
 	    	ideasActivity.showEditDialog();
 	    }
 	};
-	
 }
