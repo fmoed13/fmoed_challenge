@@ -29,8 +29,24 @@ public class FragmentDialogActivity extends FragmentActivity implements EditName
 			break;
 		case 2:
 			IdeasActivity.idea2Text = inputText;
+			break;
 		case 3:
 			IdeasActivity.idea3Text = inputText;
+		default:
+			break;
+		}
+    }
+    
+    public void passImage(String imagePath) {
+    	switch (this.idea_id) {
+		case 1:
+			IdeasActivity.idea1Image = imagePath;
+			break;
+		case 2:
+			IdeasActivity.idea2Image = imagePath;
+			break;
+		case 3:
+			IdeasActivity.idea3Image = imagePath;
 		default:
 			break;
 		}

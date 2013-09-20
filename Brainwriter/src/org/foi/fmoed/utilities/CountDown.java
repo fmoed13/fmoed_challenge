@@ -52,6 +52,7 @@ public class CountDown extends CountDownTimer {
 					.submitIdea(IdeasActivity.groupName,
 							ideasActivity.settingsManager.getUserName(),
 							ideasActivity.getIdeasTextsList(),
+							ideasActivity.getIdeasPictureList(),
 							ideasActivity.progressDialog);
 		}
 	}
