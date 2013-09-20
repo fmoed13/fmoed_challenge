@@ -10,19 +10,16 @@ import org.foi.fmoed.adapters.IdeaAdapter;
 import org.foi.fmoed.managers.MultimediaManager;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,8 +32,6 @@ public class CameraActivity extends Activity {
 	private ImageButton retakePhotoButton;
 	private ImageView imageView;
 	private byte[] imageBytes = null;
-
-	private MultimediaManager mm;
 
 	private String imagePath;
 
@@ -82,12 +77,7 @@ public class CameraActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// String status =
-				// (mm.saveImage(Bitmap.createBitmap(v.getWidth(),
-				// v.getHeight(), Bitmap.Config.ARGB_8888))) ?
-				// "Wallpaper has been setted up" : "Error Saving Image";
-				// Toast.makeText(getApplicationContext(), status,
-				// Toast.LENGTH_SHORT).show();
+
 				savePhotoButton.setEnabled(false);
 				if (imageBytes != null) {
 					saveImage(imageBytes);

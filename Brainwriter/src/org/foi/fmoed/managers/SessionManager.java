@@ -110,9 +110,9 @@ public class SessionManager {
 				.setMultipartParameter("text2", ideasTexts.get(1))
 				.setMultipartParameter("text3", ideasTexts.get(2));
 
-		for (int i = 0; i < imagesList.size(); ++i) {
+		for (int i = 0; i < imagesList.size(); i++) {
 			if (imagesList.get(i) != "") {
-				builder.setMultipartFile("image" + i,
+				builder.setMultipartFile("image" + (i+1),
 						new File(imagesList.get(i)));
 			}
 		}

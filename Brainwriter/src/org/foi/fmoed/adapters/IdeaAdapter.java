@@ -119,7 +119,6 @@ public class IdeaAdapter extends BaseAdapter {
 		@Override
 		public void onClick(final View v) {
 			Button btn = (Button) v;
-			//Context ctx = v.getContext();
 			tmpIdeaId = (Integer)btn.getTag();
 			Intent camera = new Intent(con, CameraActivity.class);
 			Context ctx = v.getContext();
@@ -134,7 +133,6 @@ public class IdeaAdapter extends BaseAdapter {
 		@Override
 		public void onClick(final View v) {
 			Button btn = (Button) v;
-			//Context ctx = v.getContext();
 			tmpIdeaId = (Integer)btn.getTag();
 			Intent canvas = new Intent(con, Drawer.class);
 			Context ctx = v.getContext();
