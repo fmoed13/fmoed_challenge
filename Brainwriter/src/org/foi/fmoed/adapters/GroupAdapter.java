@@ -1,5 +1,7 @@
 package org.foi.fmoed.adapters;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.foi.fmoed.R;
@@ -27,6 +29,7 @@ public class GroupAdapter extends BaseAdapter{
 	private Context con;
 	private DatabaseManager dbManager;
 	private List<Group> groupList;
+	public static HashMap<String, TextView> txtTimersMap;
 	private int indexGroupList;
 	
 	public void generateGroupFixtures() {
@@ -42,7 +45,7 @@ public class GroupAdapter extends BaseAdapter{
 		this.con = c;
 		this.indexGroupList = 0;
 		this.dbManager = new DatabaseManager(c);
-
+		txtTimersMap = new HashMap<String, TextView>();
 		if(this.dbManager.getRecordsCount(DatabaseManager.TABLE_GROUP) <= 0){
 			this.generateGroupFixtures();
 		}
@@ -71,25 +74,24 @@ public class GroupAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		Group group;
-		TextView textName, textStatus, textRound;
+		TextView textName, textStatus, textTimer;
 		LayoutInflater li;
 		ImageButton results, addIdea;
-		
 		if (convertView == null){
 				li = LayoutInflater.from(con);
 				v = li.inflate(R.layout.group_item, null);
 				textName = (TextView)v.findViewById(R.id.groupName);
 				textStatus = (TextView)v.findViewById(R.id.status);
-				textRound = (TextView)v.findViewById(R.id.round);
+				textTimer = (TextView)v.findViewById(R.id.timer);
 				results = (ImageButton)v.findViewById(R.id.results);
 				addIdea = (ImageButton)v.findViewById(R.id.bulb);
-				
 				
 				if (groupList.size() > indexGroupList) {
 					group = this.groupList.get(indexGroupList++);
 					textName.setText(group.getName());
 					textStatus.setText(group.getStatus());
-					textRound.setText(group.getRound());
+					textTimer.setText(group.getRound());
+					txtTimersMap.put(group.getName(), textStatus);
 				}
 				
 				results.setOnClickListener(new OnClickListener() {

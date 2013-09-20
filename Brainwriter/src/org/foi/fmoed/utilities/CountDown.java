@@ -33,6 +33,14 @@ public class CountDown extends CountDownTimer {
 		countDownCache.put(IdeasActivity.groupName, this);
 	}
 
+	public String getRestMinutesString() {
+		return String.format(Locale.getDefault(), "%d min, %d sec", 
+			    TimeUnit.MILLISECONDS.toMinutes(this.currentState),
+			    TimeUnit.MILLISECONDS.toSeconds(this.currentState) - 
+			    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(this.currentState))
+			);
+	}
+	
 	@Override
 	public void onFinish() {
 		if(!ideasActivity.submitted) {
@@ -56,12 +64,7 @@ public class CountDown extends CountDownTimer {
 				boxTime = (TextView) ideasActivity.findViewById(R.id.group_time);
 			}
 			if (boxTime != null) {
-				String timeAvailable = String.format(Locale.getDefault(), "Time: %d min, %d sec", 
-					    TimeUnit.MILLISECONDS.toMinutes(this.currentState),
-					    TimeUnit.MILLISECONDS.toSeconds(this.currentState) - 
-					    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(this.currentState))
-					);
-				boxTime.setText(timeAvailable);
+				boxTime.setText(getRestMinutesString());
 			}
 
 		}
