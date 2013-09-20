@@ -14,18 +14,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A dummy fragment representing a section of the app, but that simply
- * displays dummy text.
- */
 public class ResultFragment extends Fragment {
 
 	private int resultNumber;
 	private View rootView;
 	private Context con;
-
+    public String groupName;
 	/**
 	 * The fragment argument representing the section number for this
 	 * fragment.
@@ -34,7 +33,10 @@ public class ResultFragment extends Fragment {
 
 	public ResultFragment() {
 	}
-	
+
+    public ResultFragment(String groupName) {
+        this.groupName = groupName;
+    }
 	/**
 	 * Sets fragments for each round. 
 	 */
@@ -43,12 +45,25 @@ public class ResultFragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		resultNumber = getArguments().getInt(ARG_RESULT_NUMBER);
-
-		rootView = inflater.inflate(R.layout.group_results_list, container,
-				false);
-		ListView results = (ListView) rootView.findViewById(R.id.group_results_list);
-		ResultAdapter resultAdapter = new ResultAdapter(getActivity());
-		results.setAdapter(resultAdapter);
+        if (resultNumber == 1){
+            rootView = inflater.inflate(R.layout.search_layout, container,
+                    false);
+            TextView groupTextName = (TextView) rootView.findViewById(R.id.groupNameText);
+            groupTextName.setText("Group: " + this.groupName);
+            EditText  username = (EditText) rootView.findViewById(R.id.username);
+            username.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Call search API/", Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
+            rootView = inflater.inflate(R.layout.group_results_list, container,
+                    false);
+            ListView results = (ListView) rootView.findViewById(R.id.group_results_list);
+            ResultAdapter resultAdapter = new ResultAdapter(getActivity());
+            results.setAdapter(resultAdapter);
+        }
 		return rootView;
 	}
 }

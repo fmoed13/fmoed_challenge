@@ -74,7 +74,7 @@ public class GroupAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		Group group;
-		TextView textName, textStatus, textTimer;
+		final TextView textName, textStatus, textTimer;
 		LayoutInflater li;
 		ImageButton results, addIdea;
 		if (convertView == null){
@@ -99,6 +99,7 @@ public class GroupAdapter extends BaseAdapter{
 					@Override
 					public void onClick(View v) {
 						Intent resultsActivity = new Intent(con, ResultsActivity.class);
+                        resultsActivity.putExtra("group_name", textName.getText().toString());
 						con.startActivity(resultsActivity);
 					}
 				});
