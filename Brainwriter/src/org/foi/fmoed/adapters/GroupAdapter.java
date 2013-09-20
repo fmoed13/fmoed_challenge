@@ -33,6 +33,7 @@ public class GroupAdapter extends BaseAdapter{
 	public static HashMap<String, TextView> txtTimersMap;
 	public static HashMap<String, TextView> txtRoundMap;
 	public static HashMap<String, ImageView> imgResultsMap;
+	public static HashMap<String, ImageView> imgIdeaMap;
 	
 	private int indexGroupList;
 	
@@ -52,6 +53,7 @@ public class GroupAdapter extends BaseAdapter{
 		txtTimersMap = new HashMap<String, TextView>();
 		txtRoundMap = new HashMap<String, TextView>();
 		imgResultsMap = new HashMap<String, ImageView>();
+		imgIdeaMap = new HashMap<String, ImageView>();
 		
 		if(this.dbManager.getRecordsCount(DatabaseManager.TABLE_GROUP) <= 0){
 			this.generateGroupFixtures();
@@ -94,6 +96,7 @@ public class GroupAdapter extends BaseAdapter{
 				results.setVisibility(View.INVISIBLE);
 				addIdea = (ImageButton)v.findViewById(R.id.bulb);
 				
+				
 				if (groupList.size() > indexGroupList) {
 					group = this.groupList.get(indexGroupList++);
 					textName.setText(group.getName());
@@ -103,6 +106,7 @@ public class GroupAdapter extends BaseAdapter{
 					txtTimersMap.put(group.getName(), textStatus);
 					txtRoundMap.put(group.getName(), textRound);
 					imgResultsMap.put(group.getName(), results);
+					imgIdeaMap.put(group.getName(), addIdea);
 				}
 				
 				results.setOnClickListener(new OnClickListener() {
