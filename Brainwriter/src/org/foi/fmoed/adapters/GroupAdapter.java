@@ -11,6 +11,7 @@ import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.models.Group;
 import org.w3c.dom.Text;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.sax.RootElement;
@@ -34,6 +35,7 @@ public class GroupAdapter extends BaseAdapter{
 	public static HashMap<String, TextView> txtRoundMap;
 	public static HashMap<String, ImageView> imgResultsMap;
 	public static HashMap<String, ImageView> imgIdeaMap;
+	public static HashMap<String, Integer> groupRoundMap;
 	
 	private int indexGroupList;
 	
@@ -54,6 +56,7 @@ public class GroupAdapter extends BaseAdapter{
 		txtRoundMap = new HashMap<String, TextView>();
 		imgResultsMap = new HashMap<String, ImageView>();
 		imgIdeaMap = new HashMap<String, ImageView>();
+		groupRoundMap = new HashMap<String, Integer>();
 		
 		if(this.dbManager.getRecordsCount(DatabaseManager.TABLE_GROUP) <= 0){
 			this.generateGroupFixtures();
@@ -82,7 +85,7 @@ public class GroupAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
-		Group group;
+		final Group group;
 
 		final TextView textName;
 		TextView textStatus, textRound;
@@ -97,7 +100,7 @@ public class GroupAdapter extends BaseAdapter{
 				results = (ImageButton)v.findViewById(R.id.results);
 				results.setVisibility(View.INVISIBLE);
 				addIdea = (ImageButton)v.findViewById(R.id.bulb);
-				
+
 				
 				if (groupList.size() > indexGroupList) {
 					group = this.groupList.get(indexGroupList++);
@@ -105,10 +108,26 @@ public class GroupAdapter extends BaseAdapter{
 					textStatus.setText(group.getStatus());
 					textRound.setText("Round: " + group.getRound());
 					
+					if(Integer.parseInt(group.getRound()) <= 0) {
+						addIdea.setVisibility(View.INVISIBLE);
+					}
+					
 					txtTimersMap.put(group.getName(), textStatus);
 					txtRoundMap.put(group.getName(), textRound);
 					imgResultsMap.put(group.getName(), results);
 					imgIdeaMap.put(group.getName(), addIdea);
+					
+					addIdea.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							IdeasActivity.groupName = group.getName();
+							Intent ideasActivity = new Intent(con,
+									IdeasActivity.class);
+							Activity activity = (Activity) con;
+							activity.startActivity(ideasActivity);
+						}
+					});
 				}
 				
 				results.setOnClickListener(new OnClickListener() {
@@ -118,14 +137,6 @@ public class GroupAdapter extends BaseAdapter{
 						Intent resultsActivity = new Intent(con, ResultsActivity.class);
                         resultsActivity.putExtra("group_name", textName.getText().toString());
 						con.startActivity(resultsActivity);
-					}
-				});
-				
-				addIdea.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View arg0) {
-						Toast.makeText(con, "Start idea activity", Toast.LENGTH_SHORT).show();
 					}
 				});
 		}

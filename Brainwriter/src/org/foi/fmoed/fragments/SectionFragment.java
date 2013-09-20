@@ -162,7 +162,7 @@ public class SectionFragment extends Fragment {
 				}
 				
 				try {
-					if(interval >= 3) {
+					if(interval >= 5) {
 						for (Map.Entry<String, TextView> entry : GroupAdapter.txtRoundMap
 								.entrySet()) {
 							sessionManager.checkSession(entry.getKey(), entry.getValue(), GroupAdapter.imgResultsMap.get(entry.getKey()));
