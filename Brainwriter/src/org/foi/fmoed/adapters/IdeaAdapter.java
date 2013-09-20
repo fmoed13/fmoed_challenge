@@ -6,6 +6,7 @@ import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.canvas.Drawer;
 import org.foi.fmoed.utilities.CountDown;
+import org.w3c.dom.Text;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,7 @@ public class IdeaAdapter extends BaseAdapter {
 	private Button addCameraBtn;
 	private Button addCanvasBtn;
 	TextView boxGroupName;
+	TextView groupRound;
 
 	public static int tmpIdeaId;
 	
@@ -63,6 +65,15 @@ public class IdeaAdapter extends BaseAdapter {
 				v = li.inflate(R.layout.group_status, null);
 
 				boxGroupName = (TextView) v.findViewById(R.id.group_name);
+				groupRound = (TextView)v.findViewById(R.id.group_round);
+				
+				if(GroupAdapter.groupRoundMap.containsKey(boxGroupName.getText())) {
+					groupRound.setText("Round: " + GroupAdapter.groupRoundMap.get(boxGroupName.getText()));
+				} else {
+					groupRound.setText("Round: 1");
+				}
+
+				
 				boxGroupName.append(IdeasActivity.groupName);
 				dbManager = new DatabaseManager(v.getContext());
 				this.con = li.getContext();

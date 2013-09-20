@@ -24,6 +24,10 @@ public class CountDown extends CountDownTimer {
 	public static long tmpCurrentState;
 	public static HashMap<String, CountDown> countDownCache = new HashMap<String, CountDown>();
 	
+	/**
+	 * Main constructor of CountDown
+	 * @param ctx Context of activity
+	 */
 	public CountDown(Context ctx) {
 		// interval 1s, time 5m
 		super(tmpCurrentState, 1000);
@@ -32,7 +36,28 @@ public class CountDown extends CountDownTimer {
 		sessionManager = new SessionManager(context);
 		countDownCache.put(IdeasActivity.groupName, this);
 	}
+	
+	/**
+	 * Static method for reseting counter of some group
+	 * @param groupName Name of group
+	 * @param ctx Context of activity
+	 */
+	public static void resetCountDown(String groupName, Context ctx) {
+		CountDown _countDown = CountDown.countDownCache.get(groupName);
+		if(_countDown != null) {
+			CountDown.tmpCurrentState = _countDown.currentState;
+			_countDown.cancel();
+			CountDown.countDownCache.remove(groupName);
+		}
+		CountDown.tmpCurrentState = 330000;
+		CountDown countDown = new CountDown(ctx);
+		countDown.start();
+	}
 
+	/**
+	 * Method for getting String with rest minutes and seconds
+	 * @return String
+	 */
 	public String getRestMinutesString() {
 		return String.format(Locale.getDefault(), "%d min, %d sec", 
 			    TimeUnit.MILLISECONDS.toMinutes(this.currentState),
@@ -41,6 +66,9 @@ public class CountDown extends CountDownTimer {
 			);
 	}
 	
+	/**
+	 * Method is executed when countDown is finished
+	 */
 	@Override
 	public void onFinish() {
 		if(!ideasActivity.submitted) {
@@ -57,6 +85,9 @@ public class CountDown extends CountDownTimer {
 		}
 	}
 
+	/**
+	 * Method which is called periodically
+	 */
 	@Override
 	public void onTick(long millisUntilFinished) {
 		this.currentState = millisUntilFinished;

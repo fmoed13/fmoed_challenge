@@ -72,7 +72,7 @@ public final class R {
         public static final int write=0x7f020030;
     }
     public static final class id {
-        public static final int action_settings=0x7f080024;
+        public static final int action_settings=0x7f080026;
         public static final int btn_save_txt=0x7f080021;
         public static final int btn_submit_ideas=0x7f08001e;
         public static final int bulb=0x7f08000e;
@@ -83,6 +83,7 @@ public final class R {
         public static final int editText1=0x7f080007;
         public static final int edit_name=0x7f08001f;
         public static final int groupName=0x7f08000d;
+        public static final int groupNameText=0x7f080022;
         public static final int group_list=0x7f080017;
         public static final int group_list_layout=0x7f080016;
         public static final int group_name=0x7f080012;
@@ -98,17 +99,18 @@ public final class R {
         public static final int pager_title_strip=0x7f080001;
         public static final int results=0x7f08000f;
         public static final int retakePhotoButton=0x7f080003;
+        public static final int round=0x7f08000b;
         public static final int savePhotoButton=0x7f080005;
-        public static final int save_button=0x7f080023;
+        public static final int save_button=0x7f080025;
+        public static final int searchButton=0x7f080024;
         public static final int section_label=0x7f080009;
         public static final int status=0x7f08000c;
         public static final int textView1=0x7f08001b;
         public static final int text_button=0x7f08001a;
-        public static final int timer=0x7f08000b;
         public static final int total=0x7f08000a;
         public static final int txt_idea_desc=0x7f080020;
         public static final int user=0x7f080010;
-        public static final int username=0x7f080022;
+        public static final int username=0x7f080023;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -125,7 +127,8 @@ public final class R {
         public static final int idea_item=0x7f03000b;
         public static final int ideas_list=0x7f03000c;
         public static final int modal_idea_text=0x7f03000d;
-        public static final int settings=0x7f03000e;
+        public static final int search_layout=0x7f03000e;
+        public static final int settings=0x7f03000f;
     }
     public static final class menu {
         public static final int main=0x7f070000;
