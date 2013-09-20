@@ -1,5 +1,6 @@
 package org.foi.fmoed.managers;
 
+import java.io.File;
 import java.util.List;
 
 import org.foi.fmoed.activities.IdeasActivity;
@@ -9,6 +10,7 @@ import org.foi.fmoed.models.Group;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.ProgressCallback;
+import com.koushikdutta.ion.builder.Builders;
 import com.google.gson.JsonObject;
 
 import android.app.Activity;
@@ -63,7 +65,7 @@ public class SessionManager {
 						IdeasActivity.groupName = groupName;
 						Intent ideasActivity = new Intent(context,
 								IdeasActivity.class);
-						Activity activity = (Activity)context;
+						Activity activity = (Activity) context;
 						activity.startActivity(ideasActivity);
 					}
 				});
@@ -90,8 +92,11 @@ public class SessionManager {
 	}
 
 	public void submitIdea(String groupName, String userName,
-			List<String> ideasTexts, final ProgressDialog progressDialog) {
-		Ion.with(this.context, this.formatURL(SUBMIT_IDEA, groupName, userName))
+			List<String> ideasTexts, List<String> imagesList,
+			final ProgressDialog progressDialog) {
+		Builders.Any.M builder = Ion
+				.with(this.context,
+						this.formatURL(SUBMIT_IDEA, groupName, userName))
 				.uploadProgressDialog(progressDialog)
 				.uploadProgress(new ProgressCallback() {
 					@Override
@@ -101,18 +106,24 @@ public class SessionManager {
 					}
 				}).setMultipartParameter("text1", ideasTexts.get(0))
 				.setMultipartParameter("text2", ideasTexts.get(1))
-				.setMultipartParameter("text3", ideasTexts.get(2))
-				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
-					@Override
-					public void onCompleted(Exception e, JsonObject result) {
-						progressDialog.dismiss();
-						Intent mainActivity = new Intent(context,
-								MainActivity.class);
-						Activity activity = (Activity) context;
-						activity.startActivity(mainActivity);
-						Log.i("submitIdea", "completed...");
-					}
-				});
+				.setMultipartParameter("text3", ideasTexts.get(2));
+
+		for (int i = 0; i < imagesList.size(); ++i) {
+			if (imagesList.get(i) != "") {
+				builder.setMultipartFile("image" + i,
+						new File(imagesList.get(i)));
+			}
+		}
+		builder.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
+			@Override
+			public void onCompleted(Exception e, JsonObject result) {
+				progressDialog.dismiss();
+				Intent mainActivity = new Intent(context, MainActivity.class);
+				Activity activity = (Activity) context;
+				activity.startActivity(mainActivity);
+				Log.i("submitIdea", "completed...");
+			}
+		});
 	}
 
 	public void receiveIdea(String groupName, String userName) {

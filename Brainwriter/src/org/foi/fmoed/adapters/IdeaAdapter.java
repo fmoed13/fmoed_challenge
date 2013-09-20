@@ -24,6 +24,8 @@ public class IdeaAdapter extends BaseAdapter {
 	private Button addCanvasBtn;
 	TextView boxGroupName;
 
+	public static int tmpIdeaId;
+	
 	public IdeaAdapter(Context c) {
 		this.con = c;
 	}
@@ -100,8 +102,13 @@ public class IdeaAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(final View v) {
+			Button btn = (Button) v;
+			//Context ctx = v.getContext();
+			tmpIdeaId = (Integer)btn.getTag();
 			Intent camera = new Intent(con, CameraActivity.class);
-			con.startActivity(camera);
+			Context ctx = v.getContext();
+			IdeasActivity ideasActivity = (IdeasActivity) ctx;
+			ideasActivity.startActivity(camera);
 		}
 
 	};
@@ -110,8 +117,13 @@ public class IdeaAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(final View v) {
+			Button btn = (Button) v;
+			//Context ctx = v.getContext();
+			tmpIdeaId = (Integer)btn.getTag();
 			Intent canvas = new Intent(con, Drawer.class);
-			con.startActivity(canvas);
+			Context ctx = v.getContext();
+			IdeasActivity ideasActivity = (IdeasActivity) ctx;
+			ideasActivity.startActivity(canvas);
 		}
 
 	};

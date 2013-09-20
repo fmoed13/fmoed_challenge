@@ -21,6 +21,8 @@ import android.view.View;
 
 public class MultimediaManager extends Activity {
 	
+	public static String imagePath;
+	
 	/**
 	 * Helper method for saving image from canvas to .png on filesystem
 	 * @param v
@@ -44,16 +46,19 @@ public class MultimediaManager extends Activity {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				imagePath = "0";
 				return true;
 			} else {
 				FileOutputStream out = new FileOutputStream(file);
 				b.compress(Bitmap.CompressFormat.PNG, 100, out);
 				out.flush();
 				out.close();
+				imagePath = file.getPath();
 				return true;
 			}
 		} catch (Exception ex) {
 			Log.i("SAVE ex", ex.toString());
+			imagePath = "";
 			return false;
 		}
 	}

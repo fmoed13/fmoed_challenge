@@ -26,12 +26,18 @@ public class IdeasActivity extends FragmentDialogActivity {
 	public static String idea1Text;
 	public static String idea2Text;
 	public static String idea3Text;
+	public static String idea1Image;
+	public static String idea2Image;
+	public static String idea3Image;
 	
 	public static void resetStaticVariables() {
+		groupName = "";
 		idea1Text = "";
 		idea2Text = "";
 		idea3Text = "";
-		groupName = "";
+		idea1Image = "";
+		idea2Image = "";
+		idea3Image = "";
 	}
 	
 	public List<String> getIdeasTextsList(){
@@ -41,6 +47,15 @@ public class IdeasActivity extends FragmentDialogActivity {
     	ideasTextList.add(idea3Text);
     	
     	return ideasTextList;
+	}
+	
+	public List<String> getIdeasPictureList(){
+    	List<String> ideasImageList = new ArrayList<String>();
+    	ideasImageList.add(idea1Image);
+    	ideasImageList.add(idea2Image);
+    	ideasImageList.add(idea3Image);
+    	
+    	return ideasImageList;
 	}
 	
 	@Override
@@ -71,7 +86,7 @@ public class IdeasActivity extends FragmentDialogActivity {
 	    public void onClick(final View v) {
 	    	submitted = true;
 			progressDialog.show();
-	    	sessionManager.submitIdea(groupName, settingsManager.getUserName(), getIdeasTextsList(), progressDialog);
+	    	sessionManager.submitIdea(groupName, settingsManager.getUserName(), getIdeasTextsList(), getIdeasPictureList(), progressDialog);
 	    }
 	};
 }

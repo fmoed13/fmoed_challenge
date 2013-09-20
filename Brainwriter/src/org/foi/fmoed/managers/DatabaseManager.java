@@ -93,7 +93,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
  
-        return cursor.getCount();
+        long count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return count;
 	}
 	
 	/**
@@ -139,7 +142,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
  
-        return cursor.getCount();
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return count;
     }
 	
 	/**
@@ -164,6 +170,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	        	groupList.add(group);
 	        } while (cursor.moveToNext());
 	    }
+	    cursor.close();
+	    db.close();
 	    return groupList;
 	}
 	
@@ -190,6 +198,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	        	ideaList.add(idea);
 	        } while (cursor.moveToNext());
 	    }
+	    cursor.close();
+	    db.close();
 	    return ideaList;
 	}
 }

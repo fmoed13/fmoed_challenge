@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.foi.fmoed.R;
+import org.foi.fmoed.activities.IdeasActivity;
+import org.foi.fmoed.adapters.IdeaAdapter;
 import org.foi.fmoed.canvas.ColorPicker.OnColorChangedListener;
 import org.foi.fmoed.managers.MultimediaManager;
 
@@ -40,7 +42,6 @@ import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -336,12 +337,22 @@ public class Drawer extends Activity implements OnColorChangedListener {
 			return true;
 
 		case 6: 
-			status = (mm.saveImage(mView, true)) ? "Wallpaper has been setted up" : "Error Saving Image";
+			status = (mm.saveImage(mView, true)) ? "Wallpaper has been setted up" : "Could not set wallpaper";
 			Toast.makeText(activity, status, Toast.LENGTH_SHORT).show();
 			return true;
 
 		case 7:
-			status = (mm.saveImage(mView, false)) ? "Image Saved" : "Error Saving Image";
+			if (mm.saveImage(mView, false) && MultimediaManager.imagePath.trim().startsWith("/")) {
+				status = "Image Saved";
+
+    			IdeasActivity ideasActivity = new IdeasActivity();
+    			ideasActivity.idea_id = IdeaAdapter.tmpIdeaId;
+    			ideasActivity.passImage(MultimediaManager.imagePath);
+				
+			} else {
+				status = "Error Saving Image";
+			}
+			
 			Toast.makeText(activity, status, Toast.LENGTH_SHORT).show();
 			finish();
 			return true;
