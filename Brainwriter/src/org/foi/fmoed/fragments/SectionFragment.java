@@ -145,8 +145,6 @@ public class SectionFragment extends Fragment {
 		Runnable r = new Runnable() {
 			@Override
 			public void run() {
-				Log.i("dada", "dada");
-
 				handler.postDelayed(this, 1000);
 
 				for (Map.Entry<String, TextView> entry : GroupAdapter.txtTimersMap
@@ -154,7 +152,7 @@ public class SectionFragment extends Fragment {
 					if(CountDown.countDownCache.containsKey(entry.getKey())) {
 						entry.getValue().setText(CountDown.countDownCache.get(entry.getKey()).getRestMinutesString());
 					} else {
-						entry.getValue().setText("0");
+						entry.getValue().setText("0 min, 0 sec");
 					}
 				}
 			}
