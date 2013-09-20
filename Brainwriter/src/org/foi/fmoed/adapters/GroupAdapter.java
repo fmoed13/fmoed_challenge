@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,14 +31,17 @@ public class GroupAdapter extends BaseAdapter{
 	private DatabaseManager dbManager;
 	private List<Group> groupList;
 	public static HashMap<String, TextView> txtTimersMap;
+	public static HashMap<String, TextView> txtRoundMap;
+	public static HashMap<String, ImageView> imgResultsMap;
+	
 	private int indexGroupList;
 	
 	public void generateGroupFixtures() {
-		Group gr = new Group("first", "finished", "6");
+		Group gr = new Group("first", "finished", "0");
 		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
 		gr = new Group("second", "not started", "0");
 		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
-		gr = new Group("thirs", "in progress", "2");
+		gr = new Group("thirs", "in progress", "0");
 		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
 	}
 	
@@ -46,6 +50,9 @@ public class GroupAdapter extends BaseAdapter{
 		this.indexGroupList = 0;
 		this.dbManager = new DatabaseManager(c);
 		txtTimersMap = new HashMap<String, TextView>();
+		txtRoundMap = new HashMap<String, TextView>();
+		imgResultsMap = new HashMap<String, ImageView>();
+		
 		if(this.dbManager.getRecordsCount(DatabaseManager.TABLE_GROUP) <= 0){
 			this.generateGroupFixtures();
 		}
@@ -74,7 +81,7 @@ public class GroupAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		Group group;
-		TextView textName, textStatus, textTimer;
+		TextView textName, textStatus, textRound;
 		LayoutInflater li;
 		ImageButton results, addIdea;
 		if (convertView == null){
@@ -82,16 +89,20 @@ public class GroupAdapter extends BaseAdapter{
 				v = li.inflate(R.layout.group_item, null);
 				textName = (TextView)v.findViewById(R.id.groupName);
 				textStatus = (TextView)v.findViewById(R.id.status);
-				textTimer = (TextView)v.findViewById(R.id.timer);
+				textRound = (TextView)v.findViewById(R.id.round);
 				results = (ImageButton)v.findViewById(R.id.results);
+				results.setVisibility(View.INVISIBLE);
 				addIdea = (ImageButton)v.findViewById(R.id.bulb);
 				
 				if (groupList.size() > indexGroupList) {
 					group = this.groupList.get(indexGroupList++);
 					textName.setText(group.getName());
 					textStatus.setText(group.getStatus());
-					textTimer.setText(group.getRound());
+					textRound.setText("Round: " + group.getRound());
+					
 					txtTimersMap.put(group.getName(), textStatus);
+					txtRoundMap.put(group.getName(), textRound);
+					imgResultsMap.put(group.getName(), results);
 				}
 				
 				results.setOnClickListener(new OnClickListener() {

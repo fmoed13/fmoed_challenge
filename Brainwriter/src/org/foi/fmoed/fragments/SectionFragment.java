@@ -143,10 +143,15 @@ public class SectionFragment extends Fragment {
 		final Handler handler = new Handler();
 
 		Runnable r = new Runnable() {
+			
+			int interval = 0;
+			
 			@Override
 			public void run() {
 				handler.postDelayed(this, 1000);
-
+				
+				interval++;
+				
 				for (Map.Entry<String, TextView> entry : GroupAdapter.txtTimersMap
 						.entrySet()) {
 					if(CountDown.countDownCache.containsKey(entry.getKey())) {
@@ -155,6 +160,20 @@ public class SectionFragment extends Fragment {
 						entry.getValue().setText("0 min, 0 sec");
 					}
 				}
+				
+				try {
+					if(interval >= 3) {
+						for (Map.Entry<String, TextView> entry : GroupAdapter.txtRoundMap
+								.entrySet()) {
+							sessionManager.checkSession(entry.getKey(), entry.getValue(), GroupAdapter.imgResultsMap.get(entry.getKey()));
+						}
+						interval = 0;
+					}
+				} catch (Exception e) {
+					int a;
+					a = 4;
+				}
+
 			}
 		};
 		handler.post(r);

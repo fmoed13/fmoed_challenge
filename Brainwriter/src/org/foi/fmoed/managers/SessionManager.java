@@ -19,6 +19,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class SessionManager {
 
@@ -50,7 +53,8 @@ public class SessionManager {
 		return String.format(url, (Object[]) strings);
 	}
 
-	public void startSession(final String groupName, final ProgressDialog progressDialog) {
+	public void startSession(final String groupName,
+			final ProgressDialog progressDialog) {
 
 		Ion.with(this.context, this.formatURL(START_SESSION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
@@ -61,7 +65,7 @@ public class SessionManager {
 							dbManager.addRecord(new Group(groupName,
 									Group.STATUS_IN_PROGRESS, "1").getValues(),
 									DatabaseManager.TABLE_GROUP);
-							
+
 						}
 						progressDialog.cancel();
 						IdeasActivity.groupName = groupName;
@@ -73,21 +77,44 @@ public class SessionManager {
 				});
 	}
 
-	public void checkSession(String groupName) {
+	public void checkSession(String groupName, final TextView txtRound,
+			final ImageView imgView) {
 		Ion.with(this.context, this.formatURL(CHECK_SESION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
 
-						Integer status = Integer.parseInt(result.get("round")
-								.toString());
+						Log.i("sessionCompleted", "sesion completed!");
 
-						if (status == 0) {
-							Log.i("checkSession",
-									"session not started or finished");
-						} else {
-							Log.i("checkStasion",
-									"session in round " + status.toString());
+						if (result != null) {
+							Integer status = Integer.parseInt(result.get(
+									"round").toString());
+
+							try {
+								if (imgView != null && txtRound != null) {
+									Log.i("sessionCompleted1",
+											"sesion completed!");
+									String[] parts = txtRound.getText()
+											.toString().split(":");
+									Integer _status = Integer.parseInt(parts[1]
+											.replaceAll("\\s+", ""));
+									if (status > _status) {
+										imgView.setVisibility(View.VISIBLE);
+									}
+									txtRound.setText("Round: "
+											+ String.valueOf(status));
+								}
+							} catch (Exception ex) {
+								// TODO: handle exception
+							}
+
+							if (status == 0) {
+								Log.i("checkSession",
+										"session not started or finished");
+							} else {
+								Log.i("checkStasion", "session in round "
+										+ status.toString());
+							}
 						}
 					}
 				});

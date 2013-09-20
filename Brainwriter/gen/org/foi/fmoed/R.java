@@ -98,13 +98,13 @@ public final class R {
         public static final int pager_title_strip=0x7f080001;
         public static final int results=0x7f08000f;
         public static final int retakePhotoButton=0x7f080003;
+        public static final int round=0x7f08000b;
         public static final int savePhotoButton=0x7f080005;
         public static final int save_button=0x7f080023;
         public static final int section_label=0x7f080009;
         public static final int status=0x7f08000c;
         public static final int textView1=0x7f08001b;
         public static final int text_button=0x7f08001a;
-        public static final int timer=0x7f08000b;
         public static final int total=0x7f08000a;
         public static final int txt_idea_desc=0x7f080020;
         public static final int user=0x7f080010;
