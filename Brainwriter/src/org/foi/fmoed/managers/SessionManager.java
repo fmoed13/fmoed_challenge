@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.activities.MainActivity;
+import org.foi.fmoed.fragments.ResultFragment;
 import org.foi.fmoed.models.Group;
 import org.foi.fmoed.utilities.CountDown;
 
@@ -161,7 +162,9 @@ public class SessionManager {
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
-						Log.i("receiveIdea", "received...");
+
+                        Log.i("receiveIdea", "received...");
+                        ResultFragment.resultStorage = result;
 					}
 				});
 	}
