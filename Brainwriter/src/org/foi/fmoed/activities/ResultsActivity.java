@@ -23,7 +23,7 @@ public class ResultsActivity extends FragmentActivity{
 	 * The viewPager that will host the section contents.
 	 */
 	ViewPager mViewPager;
-	
+	String groupName;
 	SettingsManager settingsManager;
 
 	public ResultsActivity() {
@@ -35,6 +35,9 @@ public class ResultsActivity extends FragmentActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.group_results);
+
+        Bundle groupNameBundle = getIntent().getExtras();
+        this.groupName = groupNameBundle.getString("group_name");
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -69,7 +72,7 @@ public class ResultsActivity extends FragmentActivity{
 		public Fragment getItem(int position) {
 
 			// getItem is called to instantiate the fragment for the given page.
-			Fragment fragment = new ResultFragment();
+			Fragment fragment = new ResultFragment(groupName);
 			Bundle args = new Bundle();
 			args.putInt(ResultFragment.ARG_RESULT_NUMBER, position + 1);
 			fragment.setArguments(args);
@@ -85,7 +88,10 @@ public class ResultsActivity extends FragmentActivity{
 		@Override
 		public CharSequence getPageTitle(int position) {
 			Locale l = Locale.getDefault();
-			return "ROUND " + (position + 1);
+            if (position==0)
+                return "SEARCH";
+            else
+			    return "ROUND " + (position);
 		}
 	}
 

@@ -11,6 +11,7 @@ import org.foi.fmoed.managers.DatabaseManager;
 import org.foi.fmoed.models.Group;
 import org.w3c.dom.Text;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.sax.RootElement;
@@ -21,6 +22,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,14 +32,19 @@ public class GroupAdapter extends BaseAdapter{
 	private DatabaseManager dbManager;
 	private List<Group> groupList;
 	public static HashMap<String, TextView> txtTimersMap;
+	public static HashMap<String, TextView> txtRoundMap;
+	public static HashMap<String, ImageView> imgResultsMap;
+	public static HashMap<String, ImageView> imgIdeaMap;
+	public static HashMap<String, Integer> groupRoundMap;
+	
 	private int indexGroupList;
 	
 	public void generateGroupFixtures() {
-		Group gr = new Group("first", "finished", "6");
+		Group gr = new Group("first", "finished", "0");
 		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
 		gr = new Group("second", "not started", "0");
 		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
-		gr = new Group("thirs", "in progress", "2");
+		gr = new Group("thirs", "in progress", "0");
 		this.dbManager.addRecord(gr.getValues(), DatabaseManager.TABLE_GROUP);
 	}
 	
@@ -46,6 +53,11 @@ public class GroupAdapter extends BaseAdapter{
 		this.indexGroupList = 0;
 		this.dbManager = new DatabaseManager(c);
 		txtTimersMap = new HashMap<String, TextView>();
+		txtRoundMap = new HashMap<String, TextView>();
+		imgResultsMap = new HashMap<String, ImageView>();
+		imgIdeaMap = new HashMap<String, ImageView>();
+		groupRoundMap = new HashMap<String, Integer>();
+		
 		if(this.dbManager.getRecordsCount(DatabaseManager.TABLE_GROUP) <= 0){
 			this.generateGroupFixtures();
 		}
@@ -73,8 +85,10 @@ public class GroupAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
-		Group group;
-		TextView textName, textStatus, textTimer;
+		final Group group;
+
+		final TextView textName;
+		TextView textStatus, textRound;
 		LayoutInflater li;
 		ImageButton results, addIdea;
 		if (convertView == null){
@@ -82,16 +96,38 @@ public class GroupAdapter extends BaseAdapter{
 				v = li.inflate(R.layout.group_item, null);
 				textName = (TextView)v.findViewById(R.id.groupName);
 				textStatus = (TextView)v.findViewById(R.id.status);
-				textTimer = (TextView)v.findViewById(R.id.timer);
+				textRound = (TextView)v.findViewById(R.id.round);
 				results = (ImageButton)v.findViewById(R.id.results);
+				results.setVisibility(View.INVISIBLE);
 				addIdea = (ImageButton)v.findViewById(R.id.bulb);
+
 				
 				if (groupList.size() > indexGroupList) {
 					group = this.groupList.get(indexGroupList++);
 					textName.setText(group.getName());
 					textStatus.setText(group.getStatus());
-					textTimer.setText(group.getRound());
+					textRound.setText("Round: " + group.getRound());
+					
+					if(Integer.parseInt(group.getRound()) <= 0) {
+						addIdea.setVisibility(View.INVISIBLE);
+					}
+					
 					txtTimersMap.put(group.getName(), textStatus);
+					txtRoundMap.put(group.getName(), textRound);
+					imgResultsMap.put(group.getName(), results);
+					imgIdeaMap.put(group.getName(), addIdea);
+					
+					addIdea.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							IdeasActivity.groupName = group.getName();
+							Intent ideasActivity = new Intent(con,
+									IdeasActivity.class);
+							Activity activity = (Activity) con;
+							activity.startActivity(ideasActivity);
+						}
+					});
 				}
 				
 				results.setOnClickListener(new OnClickListener() {
@@ -99,15 +135,8 @@ public class GroupAdapter extends BaseAdapter{
 					@Override
 					public void onClick(View v) {
 						Intent resultsActivity = new Intent(con, ResultsActivity.class);
+                        resultsActivity.putExtra("group_name", textName.getText().toString());
 						con.startActivity(resultsActivity);
-					}
-				});
-				
-				addIdea.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View arg0) {
-						Toast.makeText(con, "Start idea activity", Toast.LENGTH_SHORT).show();
 					}
 				});
 		}

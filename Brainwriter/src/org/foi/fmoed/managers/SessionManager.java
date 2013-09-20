@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.foi.fmoed.activities.IdeasActivity;
 import org.foi.fmoed.activities.MainActivity;
+import org.foi.fmoed.adapters.GroupAdapter;
+import org.foi.fmoed.fragments.ResultFragment;
 import org.foi.fmoed.models.Group;
 import org.foi.fmoed.utilities.CountDown;
 
@@ -19,6 +21,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class SessionManager {
 
@@ -50,7 +55,13 @@ public class SessionManager {
 		return String.format(url, (Object[]) strings);
 	}
 
-	public void startSession(final String groupName, final ProgressDialog progressDialog) {
+	/**
+	 * Method for starting new session
+	 * @param groupName Group name
+	 * @param progressDialog dialog to cancel when session is started
+	 */
+	public void startSession(final String groupName,
+			final ProgressDialog progressDialog) {
 
 		Ion.with(this.context, this.formatURL(START_SESSION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
@@ -61,7 +72,7 @@ public class SessionManager {
 							dbManager.addRecord(new Group(groupName,
 									Group.STATUS_IN_PROGRESS, "1").getValues(),
 									DatabaseManager.TABLE_GROUP);
-							
+
 						}
 						progressDialog.cancel();
 						IdeasActivity.groupName = groupName;
@@ -73,21 +84,49 @@ public class SessionManager {
 				});
 	}
 
-	public void checkSession(String groupName) {
+	/**
+	 * Method for checking session state
+	 * @param groupName Name of group
+	 * @param txtRound TextView with round number
+	 * @param imgView ImageView to enable when it is needed
+	 */
+	public void checkSession(final String groupName, final TextView txtRound,
+			final ImageView imgView) {
 		Ion.with(this.context, this.formatURL(CHECK_SESION, groupName))
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
 
-						Integer status = Integer.parseInt(result.get("round")
-								.toString());
+						Log.i("sessionCompleted", "sesion completed!");
 
-						if (status == 0) {
-							Log.i("checkSession",
-									"session not started or finished");
-						} else {
-							Log.i("checkStasion",
-									"session in round " + status.toString());
+						if (result != null) {
+							Integer status = Integer.parseInt(result.get(
+									"round").toString());
+
+							try {
+								if (imgView != null && txtRound != null) {
+									String[] parts = txtRound.getText()
+											.toString().split(":");
+									Integer _status = Integer.parseInt(parts[1]
+											.replaceAll("\\s+", ""));
+									if (status > _status) {
+										imgView.setVisibility(View.VISIBLE);
+										txtRound.setText("Round: "
+												+ String.valueOf(status));
+										GroupAdapter.groupRoundMap.put(groupName, status);
+									}
+								}
+							} catch (Exception ex) {
+								// TODO: handle exception
+							}
+
+							if (status == 0) {
+								Log.i("checkSession",
+										"session not started or finished");
+							} else {
+								Log.i("checkStasion", "session in round "
+										+ status.toString());
+							}
 						}
 					}
 				});
@@ -96,7 +135,7 @@ public class SessionManager {
 	public void submitIdea(String groupName, String userName,
 			List<String> ideasTexts, List<String> imagesList,
 			final ProgressDialog progressDialog) {
-		Builders.Any.M builder = Ion
+		Builders.Any.B builder = Ion
 				.with(this.context,
 						this.formatURL(SUBMIT_IDEA, groupName, userName))
 				.uploadProgressDialog(progressDialog)
@@ -106,12 +145,16 @@ public class SessionManager {
 						progressDialog.setProgress(uploaded);
 						progressDialog.setMax(total);
 					}
-				}).setMultipartParameter("text1", ideasTexts.get(0))
-				.setMultipartParameter("text2", ideasTexts.get(1))
-				.setMultipartParameter("text3", ideasTexts.get(2));
+				});
+
+		for (int i = 0; i < ideasTexts.size(); ++i) {
+			if (ideasTexts.get(i) != null && !ideasTexts.get(i).isEmpty()) {
+				builder.setMultipartParameter("text" + i, ideasTexts.get(i));
+			}
+		}
 
 		for (int i = 0; i < imagesList.size(); ++i) {
-			if (imagesList.get(i) != "") {
+			if (imagesList.get(i) != "" && imagesList.get(i) != null) {
 				builder.setMultipartFile("image" + i,
 						new File(imagesList.get(i)));
 			}
@@ -134,7 +177,9 @@ public class SessionManager {
 				.asJsonObject().setCallback(new FutureCallback<JsonObject>() {
 					@Override
 					public void onCompleted(Exception e, JsonObject result) {
+
 						Log.i("receiveIdea", "received...");
+						ResultFragment.resultStorage = result;
 					}
 				});
 	}
